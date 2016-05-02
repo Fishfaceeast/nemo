@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Laravel Quickstart - Basic</title>
+        <title>Laravel Quickstart - Intermediate</title>
 
         <!-- CSS And JavaScript -->
     </head>

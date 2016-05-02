@@ -62,3 +62,13 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::get('/tasks', 'TaskController@index');
 Route::post('/task', 'TaskController@store');
 Route::delete('/task/{task}', 'TaskController@destroy');
+
+Route::get('/', function () {
+	return redirect('/tasks');
+});
+
+Route::auth();
+
+Route::get('/home', function () {
+	return redirect('/tasks');
+});
