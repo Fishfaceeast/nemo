@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="aws">
+    <serverData>
+      <paths name="aws">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/nemo" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/lib/include" />
+            <excludedPath local="true" path="$PROJECT_DIR$/composer.json" />
+            <excludedPath local="true" path="$PROJECT_DIR$/composer.lock" />
+            <excludedPath local="true" path="$PROJECT_DIR$/composer.phar" />
+            <excludedPath local="true" path="$PROJECT_DIR$/vendor" />
+            <excludedPath local="true" path="$PROJECT_DIR$/htdocs/artisan" />
+            <excludedPath local="true" path="$PROJECT_DIR$/htdocs/gulpfile.js" />
+            <excludedPath local="true" path="$PROJECT_DIR$/htdocs/package.json" />
+            <excludedPath local="true" path="$PROJECT_DIR$/htdocs/phpunit.xml" />
+            <excludedPath local="true" path="$PROJECT_DIR$/htdocs/readme.md" />
+            <excludedPath local="true" path="$PROJECT_DIR$/htdocs/server.php" />
+            <excludedPath local="true" path="$PROJECT_DIR$/htdocs/composer.phar" />
+            <excludedPath local="true" path="$PROJECT_DIR$/htdocs/composer.json" />
+            <excludedPath local="true" path="$PROJECT_DIR$/htdocs/composer.lock" />
+            <excludedPath local="true" path="$PROJECT_DIR$/htdocs/vendor" />
+            <excludedPath local="true" path="$PROJECT_DIR$/htdocs/.env" />
+            <excludedPath local="true" path="$PROJECT_DIR$/htdocs/database" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ON_EXPLICIT_SAVE" />
+  </component>
+</project>
