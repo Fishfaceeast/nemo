@@ -76,4 +76,12 @@ class User extends Model implements AuthenticatableContract,
 	{
 		return $this->hasMany(Task::class);
 	}
+
+	/**
+	 * Get the basic for the user.
+	 */
+	public function basic()
+	{
+		return $this->hasOne(Basic::class);
+	}
 }

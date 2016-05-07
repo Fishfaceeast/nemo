@@ -63,6 +63,12 @@ Route::get('/tasks', 'TaskController@index');
 Route::post('/task', 'TaskController@store');
 Route::delete('/task/{task}', 'TaskController@destroy');
 
+// Profile Routes...
+Route::get('/profile', 'ProfileController@index');
+
+// Basic Info Routes...
+Route::post('/basic/update', 'BasicController@update');
+
 Route::get('/', function () {
 	return redirect('/tasks');
 });
