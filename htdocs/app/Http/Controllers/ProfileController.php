@@ -9,10 +9,12 @@
 namespace App\Http\Controllers;
 
 use App\Basic;
+use App\Detail;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\BasicRepository;
+use App\Repositories\DetailRepository;
 
 class ProfileController extends Controller {
 	/**
@@ -21,6 +23,7 @@ class ProfileController extends Controller {
 	 * @var BasicRepository
 	 */
 	protected $basics;
+	protected $details;
 
 	/**
 	 * Create a new controller instance.
@@ -28,10 +31,11 @@ class ProfileController extends Controller {
 	 * @param  BasicRepository  $basic
 	 * @return void
 	 */
-	public function __construct(BasicRepository $basics) {
+	public function __construct(BasicRepository $basics, DetailRepository $details) {
 		$this->middleware('auth');
 
 		$this->basics = $basics;
+		$this->details = $details;
 	}
 
 
@@ -44,6 +48,7 @@ class ProfileController extends Controller {
 	public function index(Request $request) {
 		return view('profile.index', [
 			'basics' => $this->basics->forUser($request->user()),
+			'details' => $this->details->forUser($request->user()),
 		]);
 	}
 }

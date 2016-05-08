@@ -69,6 +69,18 @@ Route::get('/profile', 'ProfileController@index');
 // Basic Info Routes...
 Route::post('/basic/update', 'BasicController@update');
 
+// Detail Info Routes...
+Route::post('/detail/update', 'DetailController@update');
+
+// target Info Routes...
+//Route::post('/target/update', 'TargetController@update');
+
+// about Info Routes...
+//Route::post('/about/update', 'AboutController@update');
+
+// refer Info Routes...
+//Route::post('/refer/update', 'ReferController@update');
+
 Route::get('/', function () {
 	return redirect('/tasks');
 });

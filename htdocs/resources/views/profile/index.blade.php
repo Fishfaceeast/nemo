@@ -19,7 +19,7 @@
     <form id="basicInfo" action="/basic/update" method="POST">
         <label for="gender">性别</label>
         <input type="text" name="gender"/>
-        <label for="city">性别</label>
+        <label for="city">城市</label>
         <input type="text" name="city"/>
         <label for="birth_year">出生年</label>
         <input type="text" name="birth_year"/>
@@ -27,10 +27,30 @@
             <i class="fa fa-btn fa-user"></i>Modify
         </button>
     </form>
+
+    <!-- Current Details -->
+    @if (count($details) > 0)
+        <div>
+            <h4>更多的信息</h4>
+            @foreach ($details as $detail)
+                <span>取向: {{ $detail->orientation }}</span>
+                <span>状态: {{ $detail->status }}</span>
+                <span>民族: {{ $detail->nationality }}</span>
+                <span>身高: {{ $detail->height }}</span>
+                <span>体重: {{ $detail->weight }}</span>
+                <span>吸烟: {{ $detail->smoking }}</span>
+                <span>饮酒: {{ $detail->drinking }}</span>
+                <span>宗教: {{ $detail->religion }}</span>
+                <span>教育: {{ $detail->education }}</span>
+                <span>娃: {{ $detail->offspring }}</span>
+                <span>宠物: {{ $detail->pet }}</span>
+            @endforeach
+        </div>
+    @endif
     <h4>更多的信息</h4>
     <form id="detailInfo" action="/detail/update" method="POST">
         <label for="orientation">取向
-            <input type="text" name="gender"/>
+            <input type="text" name="orientation"/>
         </label>
         <label for="status">状态
             <input type="text" name="status"/>
@@ -43,9 +63,6 @@
         </label>
         <label for="weight">体重
             <input type="text" name="weight"/>
-        </label>
-        <label for="body_type">体型
-            <input type="text" name="body_type"/>
         </label>
         <label for="smoking">吸烟
             <input type="text" name="smoking"/>
