@@ -1,30 +1,5 @@
 <?php
 
-//namespace App;
-//
-//use Illuminate\Foundation\Auth\User as Authenticatable;
-//
-//class User extends Authenticatable
-//{
-//    /**
-//     * The attributes that are mass assignable.
-//     *
-//     * @var array
-//     */
-//    protected $fillable = [
-//        'name', 'email', 'password',
-//    ];
-//
-//    /**
-//     * The attributes that should be hidden for arrays.
-//     *
-//     * @var array
-//     */
-//    protected $hidden = [
-//        'password', 'remember_token',
-//    ];
-//}
-
 namespace App;
 
 // Namespace Imports...
@@ -82,5 +57,29 @@ class User extends Model implements AuthenticatableContract,
 	public function detail()
 	{
 		return $this->hasOne(Detail::class);
+	}
+
+	/**
+	 * Get the about for the user.
+	 */
+	public function about()
+	{
+		return $this->hasOne(About::class);
+	}
+
+	/**
+	 * Get the target for the user.
+	 */
+	public function target()
+	{
+		return $this->hasOne(Target::class);
+	}
+
+	/**
+	 * Get all of the refers for the user.
+	 */
+	public function refers()
+	{
+		return $this->hasMany(Refer::class);
 	}
 }
