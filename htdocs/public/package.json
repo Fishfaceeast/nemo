@@ -1,0 +1,24 @@
+{
+	"name": "nemo-assets",
+	"version": "0.1.0",
+	"description": "Assets of youi.com",
+	"homepage": "https://github.com/fishfaceeast/nemo",
+	"author": "xiaoxi qincpp",
+	"private": true,
+	"main": "gulpfile.js",
+	"scripts": {
+		"watch": "gulp watch",
+		"prewatch": "npm install && npm run build",
+		"build": "gulp clean-build",
+		"clean": "gulp clean",
+		"scripts": "gulp scripts"
+	},
+	"dependencies": {
+		"jquery": "^2.2.3",
+		"underscore": "~1.8.0"
+	},
+	"devDependencies": {
+		"gulp": "^3.9.1",
+		"webpack": "^1.12.1"
+	}
+}
