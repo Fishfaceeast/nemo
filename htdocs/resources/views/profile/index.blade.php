@@ -1,4 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.common')
+
+@section('styles')
+    @parent
+
+    <link rel="stylesheet" href="/css/profile.css">
+@endsection
 
 @section('content')
 
@@ -195,4 +201,10 @@
         </button>
     </form>
 
+@endsection
+
+@section('scripts')
+    @parent
+
+    <script src="/js/profile.js"></script>
 @endsection
