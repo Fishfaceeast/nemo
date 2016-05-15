@@ -4,3 +4,6 @@
 Homestead.yaml
 Homestead.json
 .env
+
+# These files are compiled from htdocs/public/
+/public/d/
