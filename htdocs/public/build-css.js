@@ -5,6 +5,7 @@
 
 var gulp = require('gulp')
 var stylus = require('gulp-stylus')
+var sass = require('gulp-sass')
 var gulpif = require('gulp-if')
 var cached = require('gulp-cached')
 var progeny = require('gulp-progeny')
@@ -22,22 +23,35 @@ var config = require('./config')
 var onDev = process.env.NODE_ENV !== 'production'
 var destDir = config.dist + '/d'
 
+//gulp.task('build-css', function () {
+//	return gulp.src('css/**/*.styl')
+//		.pipe(gulpif(onDev, cached('stylus')))
+//		.pipe(gulpif(onDev, progeny({
+//			exclusion: /node_modules/,
+//		})))
+//		.pipe(gulpFilter(function (file) {
+//			// 只编译第一层目录下的index.styl
+//			return /^[^/]+\/index\.styl$/.test(file.relative)
+//		}))
+//		.pipe(gulpif(onDev, sourcemaps.init()))
+//		.pipe(stylus({
+//			linenos: false,
+//			compress: false, // compress在部署其他步骤完成
+//			errors: true,
+//		}))
+//		.pipe(gulpif(!onDev, postCssHandler()))
+//		.pipe(gulpif(onDev, sourcemaps.write('.')))
+//		.pipe(gulp.dest(destDir))
+//})
+
 gulp.task('build-css', function () {
-	return gulp.src('css/**/*.styl')
-		.pipe(gulpif(onDev, cached('stylus')))
+	return gulp.src(['css/**/*.scss', 'css/**/*.sass'])
+		.pipe(gulpif(onDev, cached('scss')))
 		.pipe(gulpif(onDev, progeny({
 			exclusion: /node_modules/,
 		})))
-		.pipe(gulpFilter(function (file) {
-			// 只编译第一层目录下的index.styl
-			return /^[^/]+\/index\.styl$/.test(file.relative)
-		}))
 		.pipe(gulpif(onDev, sourcemaps.init()))
-		.pipe(stylus({
-			linenos: false,
-			compress: false, // compress在部署其他步骤完成
-			errors: true,
-		}))
+		.pipe(sass())
 		.pipe(gulpif(!onDev, postCssHandler()))
 		.pipe(gulpif(onDev, sourcemaps.write('.')))
 		.pipe(gulp.dest(destDir))

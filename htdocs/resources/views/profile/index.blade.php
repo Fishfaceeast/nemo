@@ -3,7 +3,6 @@
 @section('styles')
     @parent
 
-    <link rel="stylesheet" href="/css/profile.css">
 @endsection
 
 @section('content')
@@ -206,5 +205,4 @@
 @section('scripts')
     @parent
 
-    <script src="/js/profile.js"></script>
 @endsection
