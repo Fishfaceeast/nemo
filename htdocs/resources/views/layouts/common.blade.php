@@ -3,7 +3,7 @@
     <head>
         <title>NEMO - @yield('title')</title>
         @section('styles')
-            <link rel="stylesheet" href="/css/lib.css">
+            <link rel="stylesheet" href="/d/common/base.css">
         @show
     </head>
 
@@ -15,7 +15,7 @@
         @yield('content')
 
         @section('scripts')
-            <script src="/js/lib.js"></script>
+            <script src="/d/profile/index.js"></script>
         @show
     </body>
 </html>

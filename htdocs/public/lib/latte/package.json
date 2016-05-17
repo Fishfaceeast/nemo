@@ -1,0 +1,17 @@
+{
+	"name": "latte",
+	"version": "1.0.0",
+	"description": "theme of youi.com",
+	"author": "xiaoxi qincpp",
+	"main": "gulpfile.js",
+	"scripts": {
+		"build-css": "gulp build-sass"
+	},
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"gulp": "^3.9.0",
+		"gulp-sass": "^2.0.4",
+		"gulp-sourcemaps": "^1.5.2"
+	}
+}
