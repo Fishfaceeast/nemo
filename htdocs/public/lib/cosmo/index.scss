@@ -5,3 +5,9 @@
 // @author yuqianpku@gmail.com
 
 @import "../../node_modules/bootstrap/scss/bootstrap";
+@import "./variables.scss";
+
+body {
+	font-family: $font-stack;
+	font-size: $font-small;
+}

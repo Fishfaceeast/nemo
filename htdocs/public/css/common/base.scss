@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import '../../lib/latte/index';
+@import '../../lib/cosmo/index';
 
 .clearfix:before, .clearfix:after {
 	content: "";
@@ -13,7 +13,6 @@ body {
 	background-color: #e2e2e2;
 	margin: 0;
 	padding: 0;
-	font-size: 14px;
 }
 .main-container {
 	margin: 0 auto;
@@ -23,4 +22,7 @@ body {
 }
 .hidden {
 	display: none;
+}
+h4 {
+	font-size: 18px;
 }
