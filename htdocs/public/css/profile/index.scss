@@ -1,0 +1,33 @@
+.main-container {
+	width: 960px;
+	margin-top: 70px;
+}
+.info-wrapper {
+	background-color: #fff;
+	border-radius: 5px;
+	margin-bottom: 20px;
+	padding: 25px;
+	float: left;
+}
+.basic-info-wrapper {
+	height: 200px;
+	padding: 0;
+}
+.target-info-wrapper {
+	height: 240px;
+}
+.basic-info-wrapper, .about-info-wrapper, .refer-info-wrapper {
+	width: 540px;
+	margin-right: 20px;
+}
+.target-info-wrapper, .detail-info-wrapper {
+	width: 400px;
+}
+.avatar {
+	width: 200px;
+	height: 200px;
+	float: left;
+}
+.basic-info {
+
+}
