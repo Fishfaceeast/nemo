@@ -16,7 +16,10 @@
             <div class="info-wrapper basic-info-wrapper clearfix">
                 <img class="avatar" src="/img/avatar.png"/>
                 <div class="basic-info">
-                    <h5>{{ Auth::user()->name }}</h5>
+                    <h5>
+                        {{ Auth::user()->name }}
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </h5>
                     @foreach ($basics as $basic)
                         <p>{{ $basic->gender }} • {{ $basic->city }} • {{ $basic->birth_year }}</p>
                     @endforeach
