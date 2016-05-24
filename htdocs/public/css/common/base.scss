@@ -14,15 +14,27 @@ body {
 	margin: 0;
 	padding: 0;
 }
-.main-container {
+.main-container, footer {
 	margin: 0 auto;
 	padding: 0;
+}
+.main-container {
 	margin-top: 54px;
 	width: 1200px;
 }
+footer {
+	width: 960px;
+	height: 54px;
+	line-height: 54px;
+}
+
 .hidden {
 	display: none;
 }
 h4 {
 	font-size: 18px;
 }
+
+/*==== temp buffer for cosmo/index.scss =====*/
+
+/*====== END =======*/

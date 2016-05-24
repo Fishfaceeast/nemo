@@ -8,7 +8,7 @@
         <title>NEMO</title>
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+        <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css">
         @section('styles')
             <link rel="stylesheet" href="/d/common/base.css">
         @show
@@ -48,11 +48,15 @@
         @yield('content')
 
         @section('footer')
-            <a href="#">关于我们</a>
-            <a href="#">职业生涯</a>
-            <a href="#">法律声明</a>
-            <a href="#">站内统计</a>
-            <a href="#">移动版</a>
+            <footer class="clearfix">
+                <nav class="nav nav-inline pull-xs-left ">
+                    <a class="nav-link" href="#">关于我们</a>
+                    <a class="nav-link" href="#">职业生涯</a>
+                    <a class="nav-link" href="#">法律声明</a>
+                    <a class="nav-link" href="#">站内统计</a>
+                    <a class="nav-link" href="#">移动版</a>
+                </nav>
+            </footer>
         @show
 
         @section('scripts')
