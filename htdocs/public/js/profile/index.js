@@ -1,5 +1,6 @@
 'use strict'
-let index = 1
-let step = 100
+let $basicSel = $('.basic-info')
 
-const PRICE_URL = '/getprice'
+$basicSel.on('click', function(e) {
+	$('#basic-info-modal').modal('show')
+})

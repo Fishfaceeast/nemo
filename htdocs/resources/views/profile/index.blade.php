@@ -97,17 +97,39 @@
                 @endforeach
             </div>
         @endif
-        <form id="basicInfo" class="hidden" action="/basic/update" method="POST">
-            <label for="gender">性别</label>
-            <input type="text" name="gender"/>
-            <label for="city">城市</label>
-            <input type="text" name="city"/>
-            <label for="birth_year">出生年</label>
-            <input type="text" name="birth_year"/>
-            <button type="submit" class="btn btn-primary">
-                <i class="fa fa-btn fa-user"></i>Modify
-            </button>
-        </form>
+        <div id="basic-info-modal" class="modal fade">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="basicInfo" action="/basic/update" method="POST">
+                            <label for="gender">性别
+                                <input type="text" name="gender"/>
+                            </label>
+                            <label for="city">城市
+                                <input type="text" name="city"/>
+                            </label>
+                            <label for="birth_year">出生年
+                                <input type="text" name="birth_year"/>
+                            </label>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-btn fa-user"></i>Modify
+                            </button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
         <form id="targetInfo" class="hidden" action="/target/update" method="POST">
             <label for="target_gender">目标群体
                 <input type="text" name="target_gender"/>
