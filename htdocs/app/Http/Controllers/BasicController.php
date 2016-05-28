@@ -15,7 +15,11 @@ class BasicController extends Controller
 	 * @return Basic
 	 */
 	protected function update(Request $request) {
-		Basic::updateOrCreate(['user_id' => $request->user()->id], $request->all());
-		return redirect('/profile');
+		try {
+			Basic::updateOrCreate(['user_id' => $request->user()->id], $request->all());
+			return response()->json('success');
+		} catch(Exception $e) {
+			return response()->json('error: ' .$e->getMessage());
+		}
 	}
 }
