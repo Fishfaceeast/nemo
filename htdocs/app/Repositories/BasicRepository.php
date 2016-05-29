@@ -22,6 +22,6 @@ class BasicRepository {
 	{
 		return Basic::where('user_id', $user->id)
 			->orderBy('created_at', 'asc')
-			->get();
+			->first();
 	}
 }
