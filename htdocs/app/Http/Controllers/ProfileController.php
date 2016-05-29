@@ -28,10 +28,10 @@ class ProfileController extends Controller {
 	 *
 	 * @var BasicRepository
 	 */
-	protected $basics;
-	protected $details;
-	protected $abouts;
-	protected $targets;
+	protected $basic;
+	protected $detail;
+	protected $about;
+	protected $target;
 	protected $refers;
 
 	/**
@@ -44,13 +44,13 @@ class ProfileController extends Controller {
 	 * @param  ReferRepository  $refer
 	 * @return void
 	 */
-	public function __construct(BasicRepository $basics, DetailRepository $details, AboutRepository $abouts, TargetRepository $targets, ReferRepository $refers) {
+	public function __construct(BasicRepository $basic, DetailRepository $detail, AboutRepository $about, TargetRepository $target, ReferRepository $refers) {
 		$this->middleware('auth');
 
-		$this->basics = $basics;
-		$this->details = $details;
-		$this->abouts = $abouts;
-		$this->targets = $targets;
+		$this->basic = $basic;
+		$this->detail = $detail;
+		$this->about = $about;
+		$this->target = $target;
 		$this->refers = $refers;
 	}
 
@@ -63,10 +63,10 @@ class ProfileController extends Controller {
 	 */
 	public function index(Request $request) {
 		return view('profile.index', [
-			'basics' => $this->basics->forUser($request->user()),
-			'details' => $this->details->forUser($request->user()),
-			'abouts' => $this->abouts->forUser($request->user()),
-			'targets' => $this->targets->forUser($request->user()),
+			'basic' => $this->basic->forUser($request->user()),
+			'detail' => $this->detail->forUser($request->user()),
+			'about' => $this->about->forUser($request->user()),
+			'target' => $this->target->forUser($request->user()),
 			'refers' => $this->refers->forUser($request->user()),
 		]);
 	}

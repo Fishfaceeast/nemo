@@ -12,35 +12,27 @@
         <!-- Content here -->
 
         <!-- Current Basics -->
-        @if (count($basics) > 0)
-            <div class="info-wrapper basic-info-wrapper clearfix">
-                <img class="avatar" src="/img/avatar.png"/>
-                <div class="basic-info">
-                    <h5>
-                        {{ Auth::user()->name }}
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                    </h5>
-                    @foreach ($basics as $basic)
-                        <p class="info-content">{{ $basic->gender }} • {{ $basic->city }} • {{ $basic->birth_year }}</p>
-                    @endforeach
-                </div>
+        <div class="info-wrapper basic-info-wrapper clearfix">
+            <img class="avatar" src="/img/avatar.png"/>
+            <div class="basic-info">
+                <h5>
+                    {{ Auth::user()->name }}
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </h5>
+                <p class="info-content">{{ $basic->gender or '——' }} • {{ $basic->city or '——' }} • {{ $basic->birth_year or '——' }}</p>
             </div>
-        @endif
+        </div>
 
         <!-- Current Looking For -->
-        @if (count($targets) > 0)
-            <div class="info-wrapper target-info-wrapper">
-                <h4>希望对方</h4>
-                @foreach ($targets as $target)
-                    <p>性别: {{ $target->target_gender }}</p>
-                    <p>最小年龄: {{ $target->ageMin }}</p>
-                    <p>最大年龄: {{ $target->ageMax }}</p>
-                    <p>一定要单身么？ {{ $target->isSingle }}</p>
-                    <p>一定要同城么？ {{ $target->isNearBy }}</p>
-                    <p>想要怎样的关系: {{ $target->relationship }}</p>
-                @endforeach
-            </div>
-        @endif
+        <div class="info-wrapper target-info-wrapper">
+            <h4>希望对方</h4>
+            <p>性别: {{ $target->target_gender or '——' }}</p>
+            <p>最小年龄: {{ $target->ageMin or '——' }}</p>
+            <p>最大年龄: {{ $target->ageMax or '——' }}</p>
+            <p>一定要单身么？ {{ $target->isSingle or '——' }}</p>
+            <p>一定要同城么？ {{ $target->isNearBy or '——' }}</p>
+            <p>想要怎样的关系: {{ $target->relationship or '——' }}</p>
+        </div>
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
@@ -53,19 +45,15 @@
         <!-- Tab panes -->
         <div class="tab-content">
             <!-- About -->
-            @if (count($abouts) > 0)
-                <div class="tab-pane active info-wrapper about-info-wrapper" id="about" role="tabpanel">
-                    @foreach ($abouts as $about)
-                        <p>关于我: {{ $about->summary }}</p>
-                        <p>每天我都在干啥: {{ $about->routine }}</p>
-                        <p>我比较擅长: {{ $about->skills }}</p>
-                        <p>我最喜欢的书 电影 音乐 食物: {{ $about->favorite }}</p>
-                        <p>没有这几样我会抓狂: {{ $about->necessities }}</p>
-                        <p>我会想这些问题: {{ $about->concerns }}</p>
-                        <p>周五晚上我会做些啥: {{ $about->friday }}</p>
-                    @endforeach
-                </div>
-            @endif
+            <div class="tab-pane active info-wrapper about-info-wrapper" id="about" role="tabpanel">
+                <p>关于我: {{ $about->summary or '——' }}</p>
+                <p>每天我都在干啥: {{ $about->routine or '——' }}</p>
+                <p>我比较擅长: {{ $about->skills or '——' }}</p>
+                <p>我最喜欢的书 电影 音乐 食物: {{ $about->favorite or '——' }}</p>
+                <p>没有这几样我会抓狂: {{ $about->necessities or '——' }}</p>
+                <p>我会想这些问题: {{ $about->concerns or '——' }}</p>
+                <p>周五晚上我会做些啥: {{ $about->friday or '——' }}</p>
+            </div>
             <!-- Refers -->
             @if (count($refers) > 0)
                 <div class="tab-pane info-wrapper refer-info-wrapper" id="refer" role="tabpanel">
@@ -79,24 +67,20 @@
         </div>
 
         <!-- Current Details -->
-        @if (count($details) > 0)
-            <div class="info-wrapper detail-info-wrapper">
-                <h5>我的更多细节</h5>
-                @foreach ($details as $detail)
-                    <p>取向: {{ $detail->orientation }}</p>
-                    <p>状态: {{ $detail->status }}</p>
-                    <p>民族: {{ $detail->nationality }}</p>
-                    <p>身高: {{ $detail->height }}</p>
-                    <p>体重: {{ $detail->weight }}</p>
-                    <p>吸烟: {{ $detail->smoking }}</p>
-                    <p>饮酒: {{ $detail->drinking }}</p>
-                    <p>宗教: {{ $detail->religion }}</p>
-                    <p>教育: {{ $detail->education }}</p>
-                    <p>娃: {{ $detail->offspring }}</p>
-                    <p>宠物: {{ $detail->pet }}</p>
-                @endforeach
-            </div>
-        @endif
+        <div class="info-wrapper detail-info-wrapper">
+            <h5>我的更多细节</h5>
+            <p>取向: {{ $detail->orientation or '——' }}</p>
+            <p>状态: {{ $detail->status or '——' }}</p>
+            <p>民族: {{ $detail->nationality or '——' }}</p>
+            <p>身高: {{ $detail->height or '——' }}</p>
+            <p>体重: {{ $detail->weight or '——' }}</p>
+            <p>吸烟: {{ $detail->smoking or '——' }}</p>
+            <p>饮酒: {{ $detail->drinking or '——' }}</p>
+            <p>宗教: {{ $detail->religion or '——' }}</p>
+            <p>教育: {{ $detail->education or '——' }}</p>
+            <p>娃: {{ $detail->offspring or '——' }}</p>
+            <p>宠物: {{ $detail->pet or '——' }}</p>
+        </div>
         <div id="basic-info-modal" class="modal fade">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">

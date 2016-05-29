@@ -20,8 +20,6 @@ class TargetRepository {
 	 */
 	public function forUser(User $user)
 	{
-		return Target::where('user_id', $user->id)
-			->orderBy('created_at', 'asc')
-			->get();
+		return Target::where('user_id', $user->id)->orderBy('created_at', 'asc')->first();
 	}
 }
