@@ -12,7 +12,11 @@ class TargetController extends Controller {
 	 * Create or Update a new Target instance
 	 */
 	protected function update(Request $request) {
-		Target::updateOrCreate(['user_id' => $request->user()->id], $request->all());
-		return redirect('/profile');
+		try {
+			Target::updateOrCreate(['user_id' => $request->user()->id], $request->all());
+			return response()->json('success');
+		} catch(Exception $e) {
+			return response()->json('error: ' .$e->getMessage());
+		}
 	}
 }

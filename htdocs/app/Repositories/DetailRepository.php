@@ -20,8 +20,15 @@ class DetailRepository {
 	 */
 	public function forUser(User $user)
 	{
-		return Detail::where('user_id', $user->id)
+		$detailCollection = Detail::where('user_id', $user->id)
 			->orderBy('created_at', 'asc')
 			->first();
+		$ret = [];
+		foreach(Detail::$itemText as $key => $text) {
+			$ret[$key]['name'] = $key;
+			$ret[$key]['cname'] = $text;
+			$ret[$key]['value'] = $detailCollection->$key;
+		}
+		return $ret;
 	}
 }
