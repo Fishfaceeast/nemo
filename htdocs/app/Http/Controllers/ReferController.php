@@ -21,7 +21,11 @@ class ReferController extends Controller
 	 * @return Refer
 	 */
 	protected function update(Request $request) {
-		Refer::updateOrCreate(['user_id' => $request->user()->id], $request->all());
-		return redirect('/profile');
+		try {
+			Refer::updateOrCreate(['user_id' => $request->user()->id], $request->all());
+			return response()->json('success');
+		} catch(Exception $e) {
+			return response()->json('error: ' .$e->getMessage());
+		}
 	}
 }

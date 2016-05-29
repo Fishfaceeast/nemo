@@ -20,6 +20,15 @@ class TargetRepository {
 	 */
 	public function forUser(User $user)
 	{
-		return Target::where('user_id', $user->id)->orderBy('created_at', 'asc')->first();
+		$targetCollection = Target::where('user_id', $user->id)
+			->orderBy('created_at', 'asc')
+			->first();
+		$ret = [];
+		foreach(Target::$itemText as $key => $text) {
+			$ret[$key]['name'] = $key;
+			$ret[$key]['cname'] = $text;
+			$ret[$key]['value'] = $targetCollection->$key;
+		}
+		return $ret;
 	}
 }

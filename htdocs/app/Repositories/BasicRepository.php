@@ -20,8 +20,15 @@ class BasicRepository {
 	 */
 	public function forUser(User $user)
 	{
-		return Basic::where('user_id', $user->id)
+		$basicCollection = Basic::where('user_id', $user->id)
 			->orderBy('created_at', 'asc')
 			->first();
+		$ret = [];
+		foreach(Basic::$itemText as $key => $text) {
+			$ret[$key]['name'] = $key;
+			$ret[$key]['cname'] = $text;
+			$ret[$key]['value'] = $basicCollection->$key;
+		}
+		return $ret;
 	}
 }

@@ -15,7 +15,11 @@ class DetailController extends Controller
 	 * @return Detail
 	 */
 	protected function update(Request $request) {
-		Detail::updateOrCreate(['user_id' => $request->user()->id], $request->all());
-		return redirect('/profile');
+		try {
+			Detail::updateOrCreate(['user_id' => $request->user()->id], $request->all());
+			return response()->json('success');
+		} catch(Exception $e) {
+			return response()->json('error: ' .$e->getMessage());
+		}
 	}
 }

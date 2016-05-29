@@ -19,19 +19,22 @@
                     {{ Auth::user()->name }}
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                 </h5>
-                <p class="info-content">{{ $basic->gender or '——' }} • {{ $basic->city or '——' }} • {{ $basic->birth_year or '——' }}</p>
+                <p class="info-content">{{ $basic['gender']['value'] or '——' }} • {{ $basic['city']['value'] or '——' }} • {{ $basic['birth_year']['value'] or '——' }}</p>
             </div>
         </div>
 
         <!-- Current Looking For -->
         <div class="info-wrapper target-info-wrapper">
-            <h4>希望对方</h4>
-            <p>性别: {{ $target->target_gender or '——' }}</p>
-            <p>最小年龄: {{ $target->ageMin or '——' }}</p>
-            <p>最大年龄: {{ $target->ageMax or '——' }}</p>
-            <p>一定要单身么？ {{ $target->isSingle or '——' }}</p>
-            <p>一定要同城么？ {{ $target->isNearBy or '——' }}</p>
-            <p>想要怎样的关系: {{ $target->relationship or '——' }}</p>
+            <div class="target-info">
+                <h4>希望对方</h4>
+                <div class="info-content">
+                    @if (count($target) > 0)
+                        @foreach ($target as $item)
+                            <p>{{ $item['cname'] }}: {{ $item['value'] or '——' }}</p>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
         </div>
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
@@ -68,18 +71,16 @@
 
         <!-- Current Details -->
         <div class="info-wrapper detail-info-wrapper">
-            <h5>我的更多细节</h5>
-            <p>取向: {{ $detail->orientation or '——' }}</p>
-            <p>状态: {{ $detail->status or '——' }}</p>
-            <p>民族: {{ $detail->nationality or '——' }}</p>
-            <p>身高: {{ $detail->height or '——' }}</p>
-            <p>体重: {{ $detail->weight or '——' }}</p>
-            <p>吸烟: {{ $detail->smoking or '——' }}</p>
-            <p>饮酒: {{ $detail->drinking or '——' }}</p>
-            <p>宗教: {{ $detail->religion or '——' }}</p>
-            <p>教育: {{ $detail->education or '——' }}</p>
-            <p>娃: {{ $detail->offspring or '——' }}</p>
-            <p>宠物: {{ $detail->pet or '——' }}</p>
+            <div class="detail-info">
+                <h5>我的更多细节</h5>
+                <div class="info-content">
+                    @if (count($detail) > 0)
+                        @foreach ($detail as $item)
+                            <p>{{ $item['cname'] }}: {{ $item['value'] or '——' }}</p>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
         </div>
         <div id="basic-info-modal" class="modal fade">
             <div class="modal-dialog" role="document">
@@ -110,33 +111,54 @@
                         <button type="button" class="btn btn-primary basic-modify">保存设置</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
                     </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+                </div>
+            </div>
+        </div>
 
-        <form id="targetInfo" class="hidden" action="/target/update" method="POST">
-            <label for="target_gender">目标群体
-                <input type="text" name="target_gender"/>
-            </label>
-            <label for="ageMin">最小年龄
-                <input type="text" name="ageMin"/>
-            </label>
-            <label for="ageMax">最大年龄
-                <input type="text" name="ageMax"/>
-            </label>
-            <label for="isSingle">一定要单身么
-                <input type="text" name="isSingle"/>
-            </label>
-            <label for="isNearBy">一定要同城么
-                <input type="text" name="isNearBy"/>
-            </label>
-            <label for="relationship">预期关系
-                <input type="text" name="relationship"/>
-            </label>
-            <button type="submit" class="btn btn-primary">
-                <i class="fa fa-btn fa-user"></i>Modify
-            </button>
-        </form>
+        <div id="target-info-modal" class="modal fade">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">希望对方</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="targetForm" action="/target/update" method="POST">
+                            <div class="form-group">
+                                <label for="target_gender">目标群体</label>
+                                <input type="text" name="target_gender"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="ageMin">最小年龄</label>
+                                <input type="text" name="ageMin"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="ageMax">最大年龄</label>
+                                <input type="text" name="ageMax"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="isSingle">一定要单身么</label>
+                                <input type="text" name="isSingle"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="isNearBy">一定要同城么</label>
+                                <input type="text" name="isNearBy"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="relationship">预期关系</label>
+                                <input type="text" name="relationship"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary target-modify">保存设置</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <form id="aboutInfo" class="hidden" action="/about/update" method="POST">
             <label for="summary">关于我
