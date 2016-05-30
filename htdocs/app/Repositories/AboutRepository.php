@@ -20,8 +20,15 @@ class AboutRepository {
 	 */
 	public function forUser(User $user)
 	{
-		return About::where('user_id', $user->id)
+		$aboutCollection = About::where('user_id', $user->id)
 			->orderBy('created_at', 'asc')
 			->first();
+		$ret = [];
+		foreach(About::$itemText as $key => $text) {
+			$ret[$key]['name'] = $key;
+			$ret[$key]['cname'] = $text;
+			$ret[$key]['value'] = $aboutCollection->$key;
+		}
+		return $ret;
 	}
 }

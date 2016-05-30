@@ -49,13 +49,11 @@
         <div class="tab-content">
             <!-- About -->
             <div class="tab-pane active info-wrapper about-info-wrapper" id="about" role="tabpanel">
-                <p>关于我: {{ $about->summary or '——' }}</p>
-                <p>每天我都在干啥: {{ $about->routine or '——' }}</p>
-                <p>我比较擅长: {{ $about->skills or '——' }}</p>
-                <p>我最喜欢的书 电影 音乐 食物: {{ $about->favorite or '——' }}</p>
-                <p>没有这几样我会抓狂: {{ $about->necessities or '——' }}</p>
-                <p>我会想这些问题: {{ $about->concerns or '——' }}</p>
-                <p>周五晚上我会做些啥: {{ $about->friday or '——' }}</p>
+                @if (count($about) > 0)
+                    @foreach ($about as $item)
+                        <p>{{ $item['cname'] }}: {{ $item['value'] or '——' }}</p>
+                    @endforeach
+                @endif
             </div>
             <!-- Refers -->
             @if (count($refers) > 0)
