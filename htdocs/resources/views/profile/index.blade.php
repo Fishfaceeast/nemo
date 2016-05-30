@@ -199,49 +199,79 @@
             </button>
         </form>
 
-        <form id="detailInfo" class="hidden" action="/detail/update" method="POST">
-            <label for="orientation">取向
-                <input type="text" name="orientation"/>
-            </label>
-            <label for="status">状态
-                <input type="text" name="status"/>
-            </label>
-            <label for="nationality">民族
-                <input type="text" name="nationality"/>
-            </label>
-            <label for="height">身高
-                <input type="text" name="height"/>
-            </label>
-            <label for="weight">体重
-                <input type="text" name="weight"/>
-            </label>
-            <label for="smoking">吸烟
-                <input type="text" name="smoking"/>
-            </label>
-            <label for="drinking">饮酒
-                <input type="text" name="drinking"/>
-            </label>
-            <label for="religion">宗教
-                <input type="text" name="religion"/>
-            </label>
-            <label for="education">教育
-                <input type="text" name="education"/>
-            </label>
-            <label for="offspring">娃
-                <input type="text" name="offspring"/>
-            </label>
-            <label for="pet">宠物
-                <input type="text" name="pet"/>
-            </label>
-            <button type="submit" class="btn btn-primary">
-                <i class="fa fa-btn fa-user"></i>Modify
-            </button>
-        </form>
+        <div id="detail-info-modal" class="modal fade">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">我的更多细节</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="detailForm" method="POST">
+                            <div class="form-group">
+                                <label for="orientation">取向</label>
+                                <input type="text" name="orientation"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="nationality">状态</label>
+                                <input type="text" name="nationality"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="height">身高</label>
+                                <input type="text" name="height"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="weight">体重</label>
+                                <input type="text" name="weight"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="smoking">吸烟</label>
+                                <input type="text" name="smoking"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="drinking">饮酒</label>
+                                <input type="text" name="drinking"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="religion">宗教</label>
+                                <input type="text" name="religion"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="education">教育</label>
+                                <input type="text" name="education"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="offspring">娃</label>
+                                <input type="text" name="offspring"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="pet">宠物</label>
+                                <input type="text" name="pet"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary detail-modify">保存设置</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 @endsection
 
 @section('scripts')
     @parent
+    <script>
+        window.__data = {
+            basic: {!! json_encode($basic) !!},
+            target: {!! json_encode($target) !!},
+            detail: {!! json_encode($detail) !!}
+        }
+    </script>
+    <script src="/d/profile/index.js"></script>
 
 @endsection
