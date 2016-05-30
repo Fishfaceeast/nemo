@@ -64,7 +64,6 @@
             <script src="/node_modules/underscore/underscore-min.js"></script>
             <script src="/node_modules/tether/dist/js/tether.min.js"></script>
             <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-            <script src="/d/profile/index.js"></script>
         @show
     </body>
 </html>
