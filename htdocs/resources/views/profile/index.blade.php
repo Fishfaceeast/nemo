@@ -92,16 +92,25 @@
                     <div class="modal-body">
                         <form id="basicForm" action="/basic/update" method="POST">
                             <div class="form-group">
-                                <label for="gender">性别</label>
-                                <input type="text" name="gender"/>
+                                <label for="gender">我是</label>
+                                <select class="c-select" name="gender">
+                                    <option value="男" selected>男</option>
+                                    <option value="女">女</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="city">城市</label>
                                 <input type="text" name="city"/>
                             </div>
                             <div class="form-group">
+                                <?php $minY = intval(date('Y', time() - 86400*365*88));?>
+                                <?php $y = intval(date('Y', time() - 86400*365*18));?>
                                 <label for="birth_year">出生年</label>
-                                <input type="text" name="birth_year"/>
+                                <select class="c-select" name="birth_year">
+                                @for ($y; $y > $minY; $y--)
+                                    <option value={{ $y }}>{{ $y }}</option>
+                                @endfor
+                                </select>
                             </div>
                         </form>
                     </div>
@@ -120,20 +129,24 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title">希望对方</h4>
+                        <h4 class="modal-title">寻找：</h4>
                     </div>
                     <div class="modal-body">
                         <form id="targetForm" action="/target/update" method="POST">
                             <div class="form-group">
-                                <label for="target_gender">目标群体</label>
-                                <input type="text" name="target_gender"/>
+                                这些关键词决定了我们为您展示的人
                             </div>
                             <div class="form-group">
-                                <label for="ageMin">最小年龄</label>
+                                <label for="target_gender">想找</label>
+                                <label for="ageMin">年龄</label>
+                                <br/>
+                                <select class="c-select" name="target_gender">
+                                    <option value="不限">不限</option>
+                                    <option value="直">直</option>
+                                    <option value="弯">弯</option>
+                                    <option value="双">双</option>
+                                </select>
                                 <input type="text" name="ageMin"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="ageMax">最大年龄</label>
                                 <input type="text" name="ageMax"/>
                             </div>
                             <div class="form-group">
@@ -145,8 +158,23 @@
                                 <input type="text" name="isNearBy"/>
                             </div>
                             <div class="form-group">
-                                <label for="relationship">预期关系</label>
-                                <input type="text" name="relationship"/>
+                                <label for="relationship">想建立</label>
+                                <label>
+                                    <input type="checkbox" name="relationship[]" value="新朋友"/>
+                                    新朋友
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="relationship[]" value="长期约会"/>
+                                    长期约会
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="relationship[]" value="短期约会"/>
+                                    短期约会
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="relationship[]" value="待定"/>
+                                    待定
+                                </label>
                             </div>
                         </form>
                     </div>
