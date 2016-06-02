@@ -40,3 +40,14 @@ i.fa-pencil {
 	color: #66aa33;
 }
 
+.pseudo-checkbox {
+	display: inline-block;
+	width: 60px;
+	height: 30px;
+	color: grey;
+}
+.pseudo-checkbox.active {
+	background-color: #00b3ee;
+	color: #fff;
+}
+

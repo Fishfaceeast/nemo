@@ -158,23 +158,14 @@
                                 <input type="text" name="isNearBy"/>
                             </div>
                             <div class="form-group">
-                                <label for="relationship">想建立</label>
-                                <label>
-                                    <input type="checkbox" name="relationship[]" value="新朋友"/>
-                                    新朋友
-                                </label>
-                                <label>
-                                    <input type="checkbox" name="relationship[]" value="长期约会"/>
-                                    长期约会
-                                </label>
-                                <label>
-                                    <input type="checkbox" name="relationship[]" value="短期约会"/>
-                                    短期约会
-                                </label>
-                                <label>
-                                    <input type="checkbox" name="relationship[]" value="待定"/>
-                                    待定
-                                </label>
+                                <label>想建立</label>
+                                <div class="pseudo-checkbox-container">
+                                    <span class="pseudo-checkbox" data-value="新朋友" data-select="0">新朋友</span>
+                                    <span class="pseudo-checkbox" data-value="长期约会" data-select="0">长期约会</span>
+                                    <span class="pseudo-checkbox" data-value="短期约会" data-select="0">短期约会</span>
+                                    <span class="pseudo-checkbox" data-value="待定" data-select="0">待定</span>
+                                    <input type="hidden" name="relationship" value=""/>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -240,27 +231,53 @@
                         <form id="detailForm" method="POST">
                             <div class="form-group">
                                 <label for="orientation">取向</label>
-                                <input type="text" name="orientation"/>
+                                <select name="orientation">
+                                    <option value="直">直</option>
+                                    <option value="弯">弯</option>
+                                    <option value="双">双</option>
+                                    <option value="不分">不分</option>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label for="nationality">状态</label>
-                                <input type="text" name="nationality"/>
+                                <label for="status">情感状态</label>
+                                <select name="status">
+                                    <option value="单身">单身</option>
+                                    <option value="和别人交往">在和别人交往</option>
+                                    <option value="已婚">已婚</option>
+                                    <option value="在开放式关系中">在开放式关系中</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="height">身高</label>
-                                <input type="text" name="height"/>
+                                <input type="number" name="height"/>
                             </div>
                             <div class="form-group">
                                 <label for="weight">体重</label>
-                                <input type="text" name="weight"/>
+                                <select name="weight">
+                                    <option value="暂时不想说">暂时不想说</option>
+                                    <option value="瘦">瘦</option>
+                                    <option value="瘦高">瘦高</option>
+                                    <option value="匀称">匀称</option>
+                                    <option value="微胖">微胖</option>
+                                    <option value="胖">胖</option>
+                                    <option value="胖又圆">胖又圆</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="smoking">吸烟</label>
-                                <input type="text" name="smoking"/>
+                                <select name="smoking">
+                                    <option value="是">是</option>
+                                    <option value="否">否</option>
+                                    <option value="有时">有时</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="drinking">饮酒</label>
-                                <input type="text" name="drinking"/>
+                                <select name="drinking">
+                                    <option value="是">是</option>
+                                    <option value="否">否</option>
+                                    <option value="社交场合">社交场合</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="religion">宗教</label>
@@ -268,11 +285,20 @@
                             </div>
                             <div class="form-group">
                                 <label for="education">教育</label>
-                                <input type="text" name="education"/>
+                                <select name="education">
+                                    <option value="高中">高中</option>
+                                    <option value="本科">本科</option>
+                                    <option value="硕士">硕士</option>
+                                    <option value="博士">博士</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="offspring">娃</label>
-                                <input type="text" name="offspring"/>
+                                <select name="offspring">
+                                    <option value="暂时不想说">暂时不想说</option>
+                                    <option value="有">有</option>
+                                    <option value="无">无</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="pet">宠物</label>

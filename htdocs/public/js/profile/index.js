@@ -41,6 +41,17 @@ $.each(model_config, function(key, option) {
 		})
 	})
 })
+$('.pseudo-checkbox').on('click', function(e) {
+	let isSelected = $(e.target).data('select') ? 0 : 1
+	$(e.target).toggleClass('active').data('select', isSelected)
+	let str = ''
+	$('.pseudo-checkbox').each(function(){
+		if($(this).data('select')) {
+			str += $(this).data('value') + " "
+		}
+	})
+	$('.pseudo-checkbox-container').children('input').val(str)
+})
 const sync = (key, sel, data) => {
 	let str = ''
 	if(key == 'basic') {
