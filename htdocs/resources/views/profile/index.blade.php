@@ -51,7 +51,18 @@
             <div class="tab-pane active info-wrapper about-info-wrapper" id="about" role="tabpanel">
                 @if (count($about) > 0)
                     @foreach ($about as $item)
-                        <p>{{ $item['cname'] }}: {{ $item['value'] or '——' }}</p>
+                        <div class="about-info">
+                            <h5>
+                                {{ $item['cname'] }}:
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </h5>
+                            <p>{{ $item['value'] or '——' }}</p>
+                            <fieldset class="form-group">
+                                <textarea class="form-control" id="{{ $item['name'] }}" rows="3"></textarea>
+                                <button type="button" class="btn btn-primary about-modify" name="about">保存设置</button>
+                                <button type="button" class="btn btn-secondary about-cancel" data-dismiss="modal">关闭</button>
+                            </fieldset>
+                        </div>
                     @endforeach
                 @endif
             </div>
@@ -59,9 +70,39 @@
             @if (count($refers) > 0)
                 <div class="tab-pane info-wrapper refer-info-wrapper" id="refer" role="tabpanel">
                     @foreach ($refers as $refer)
-                        <p>推荐原因: {{ $refer->why }}</p>
-                        <p>描述: {{ $refer->description }}</p>
-                        <p>你们的故事: {{ $refer->story }}</p>
+                        <div class="refer-info">
+                            <h5>推荐原因:
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </h5>
+                            <p>{{ $refer->why }}</p>
+                            <fieldset class="form-group">
+                                <textarea class="form-control" id="why" rows="3"></textarea>
+                                <button type="button" class="btn btn-primary refer-modify" name="refer">保存设置</button>
+                                <button type="button" class="btn btn-secondary refer-cancel" data-dismiss="modal">关闭</button>
+                            </fieldset>
+                        </div>
+                        <div class="refer-info">
+                            <h5>描述:
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </h5>
+                            <p>{{ $refer->description }}</p>
+                            <fieldset class="form-group">
+                                <textarea class="form-control" id="description" rows="3"></textarea>
+                                <button type="button" class="btn btn-primary refer-modify" name="refer">保存设置</button>
+                                <button type="button" class="btn btn-secondary refer-cancel" data-dismiss="modal">关闭</button>
+                            </fieldset>
+                        </div>
+                        <div class="refer-info">
+                            <h5>你们的故事:
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </h5>
+                            <p>{{ $refer->story }}</p>
+                            <fieldset class="form-group">
+                                <textarea class="form-control" id="story" rows="3"></textarea>
+                                <button type="button" class="btn btn-primary refer-modify" name="refer">保存设置</button>
+                                <button type="button" class="btn btn-secondary refer-cancel" data-dismiss="modal">关闭</button>
+                            </fieldset>
+                        </div>
                     @endforeach
                 </div>
             @endif
@@ -176,47 +217,6 @@
                 </div>
             </div>
         </div>
-
-        <form id="aboutInfo" class="hidden" action="/about/update" method="POST">
-            <label for="summary">关于我
-                <input type="text" name="summary"/>
-            </label>
-            <label for="routine">每天我都在干啥
-                <input type="text" name="routine"/>
-            </label>
-            <label for="skills">我比较擅长
-                <input type="text" name="skills"/>
-            </label>
-            <label for="favorite">我最喜欢的书 电影 音乐 食物
-                <input type="text" name="favorite"/>
-            </label>
-            <label for="necessities">没有这几样我会抓狂
-                <input type="text" name="necessities"/>
-            </label>
-            <label for="concerns">我会想这些问题
-                <input type="text" name="concerns"/>
-            </label>
-            <label for="friday">周五晚上我会做些啥
-                <input type="text" name="friday"/>
-            </label>
-            <button type="submit" class="btn btn-primary">
-                <i class="fa fa-btn fa-user"></i>Modify
-            </button>
-        </form>
-        <form id="refer" class="hidden" action="/refer/update" method="POST">
-            <label for="why">why
-                <input type="text" name="why"/>
-            </label>
-            <label for="description">描述
-                <input type="text" name="description"/>
-            </label>
-            <label for="story">你们的故事
-                <input type="text" name="story"/>
-            </label>
-            <button type="submit" class="btn btn-primary">
-                <i class="fa fa-btn fa-user"></i>Modify
-            </button>
-        </form>
 
         <div id="detail-info-modal" class="modal fade">
             <div class="modal-dialog" role="document">

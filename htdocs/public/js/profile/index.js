@@ -1,4 +1,9 @@
 'use strict'
+const URL = {
+	'refer': '/refer/update',
+	'about': '/about/update'
+}
+
 var model_config = {
 	basic: {
 		url: '/basic/update',
@@ -69,5 +74,30 @@ const sync = (key, sel, data) => {
 		})
 		sel.html(str)
 	}
-
 }
+$('.refer-info-wrapper .fa-pencil, .about-info-wrapper .fa-pencil').on('click', function(e) {
+	let $parent = $(e.target).parent()
+	$parent.siblings('p').hide().siblings('fieldset').show()
+})
+$('.refer-modify, .about-modify').on('click', function(e) {
+	let $textarea = $(e.target).siblings('textarea')
+	let $fieldset = $(e.target).parent()
+	let $p = $fieldset.siblings('p')
+	let val = $textarea.val()
+	let key = $textarea.attr('id')
+	let data = {}
+	data[key] = val
+	let name = $(e.target).attr('name')
+	let url = URL[name]
+	$.post(url, data, function(res){
+		if(res == 'success') {
+			$p.text(val).show()
+		} else {
+			alert(res)
+		}
+		$fieldset.hide()
+	})
+})
+$('.refer-cancel, .about-cancel').on('click', function(e) {
+	$(e.target).parent().hide().siblings('p').show()
+})
