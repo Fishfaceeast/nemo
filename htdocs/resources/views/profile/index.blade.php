@@ -141,7 +141,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="city">城市</label>
-                                <input type="text" name="city"/>
+                                <input type="text" name="city" data-required="1" />
+                                <span class="empty-alert">城市不能为空</span>
                             </div>
                             <div class="form-group">
                                 <?php $minY = intval(date('Y', time() - 86400*365*88));?>
@@ -187,8 +188,12 @@
                                     <option value="弯">弯</option>
                                     <option value="双">双</option>
                                 </select>
-                                <input type="text" name="ageMin"/>
-                                <input type="text" name="ageMax"/>
+                                <input type="text" name="ageMin" data-required="1" data-pattern="number"/>
+                                <span class="empty-alert">最小年龄不能为空</span>
+                                <span class="error-alert">请输入数字</span>
+                                <input type="text" name="ageMax" data-required="1" data-pattern="number"/>
+                                <span class="empty-alert">最大年龄不能为空</span>
+                                <span class="error-alert">请输入数字</span>
                             </div>
                             <div class="form-group">
                                 <label for="isSingle">一定要单身么</label>
@@ -228,7 +233,7 @@
                         <h4 class="modal-title">我的更多细节</h4>
                     </div>
                     <div class="modal-body">
-                        <form id="detailForm" method="POST">
+                        <form id="detailForm" action="/detail/update" method="POST">
                             <div class="form-group">
                                 <label for="orientation">取向</label>
                                 <select name="orientation">
@@ -249,7 +254,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="height">身高</label>
-                                <input type="number" name="height"/>
+                                <input type="text" name="height" data-required="1" data-pattern="number"/>
+                                <span class="empty-alert">身高不能为空</span>
+                                <span class="error-alert">请输入数字</span>
                             </div>
                             <div class="form-group">
                                 <label for="weight">体重</label>
@@ -326,6 +333,7 @@
             detail: {!! json_encode($detail) !!}
         }
     </script>
+    <script src="/js/modules/validator.js"></script>
     <script src="/d/profile/index.js"></script>
 
 @endsection

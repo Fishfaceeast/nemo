@@ -11,7 +11,8 @@ var model_config = {
 		modelElement: $('#basic-info-modal'),
 		clickElement: $('.basic-info'),
 		saveElement: $('.basic-modify'),
-		contentElement: $('.basic-info .info-content')
+		contentElement: $('.basic-info .info-content'),
+		validator: {},
 	},
 	target: {
 		url: '/target/update',
@@ -19,7 +20,8 @@ var model_config = {
 		modelElement: $('#target-info-modal'),
 		clickElement: $('.target-info'),
 		saveElement: $('.target-modify'),
-		contentElement: $('.target-info .info-content')
+		contentElement: $('.target-info .info-content'),
+		validator: {},
 	},
 	detail: {
 		url: '/detail/update',
@@ -27,23 +29,28 @@ var model_config = {
 		modelElement: $('#detail-info-modal'),
 		clickElement: $('.detail-info'),
 		saveElement: $('.detail-modify'),
-		contentElement: $('.detail-info .info-content')
+		contentElement: $('.detail-info .info-content'),
+		validator: {},
 	}
 }
+
 $.each(model_config, function(key, option) {
+	option.validator = option.formElement.validator({})
 	option.clickElement.on('click', function(){
 		option.modelElement.modal('show')
 	})
 	option.saveElement.on('click', function(){
 		let indexedData = _.indexBy(option.formElement.serializeArray(), 'name')
-		$.post(option.url, option.formElement.serialize(), function(res) {
-			if(res == 'success') {
-				sync(key, option.contentElement, indexedData)
-				option.modelElement.modal('hide')
-			} else {
-				alert(res)
-			}
-		})
+		if(option.validator.validateForm()) {
+			$.post(option.url, option.formElement.serialize(), function(res) {
+				if(res == 'success') {
+					sync(key, option.contentElement, indexedData)
+					option.modelElement.modal('hide')
+				} else {
+					alert(res)
+				}
+			})
+		}
 	})
 })
 $('.pseudo-checkbox').on('click', function(e) {
