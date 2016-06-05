@@ -1,4 +1,5 @@
-'use strict'
+import Validator from '../module/validator.js'
+
 const URL = {
 	'refer': '/refer/update',
 	'about': '/about/update'
@@ -35,7 +36,7 @@ var model_config = {
 }
 
 $.each(model_config, function(key, option) {
-	option.validator = option.formElement.validator({})
+	option.validator = new Validator(option.formElement, {})
 	option.clickElement.on('click', function(){
 		option.modelElement.modal('show')
 	})

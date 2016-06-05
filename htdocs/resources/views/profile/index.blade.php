@@ -131,7 +131,7 @@
                         <h4 class="modal-title">你的基本信息</h4>
                     </div>
                     <div class="modal-body">
-                        <form id="basicForm" action="/basic/update" method="POST">
+                        <form id="basicForm">
                             <div class="form-group">
                                 <label for="gender">我是</label>
                                 <select class="c-select" name="gender">
@@ -174,7 +174,7 @@
                         <h4 class="modal-title">寻找：</h4>
                     </div>
                     <div class="modal-body">
-                        <form id="targetForm" action="/target/update" method="POST">
+                        <form id="targetForm">
                             <div class="form-group">
                                 这些关键词决定了我们为您展示的人
                             </div>
@@ -233,7 +233,7 @@
                         <h4 class="modal-title">我的更多细节</h4>
                     </div>
                     <div class="modal-body">
-                        <form id="detailForm" action="/detail/update" method="POST">
+                        <form id="detailForm">
                             <div class="form-group">
                                 <label for="orientation">取向</label>
                                 <select name="orientation">
@@ -333,7 +333,6 @@
             detail: {!! json_encode($detail) !!}
         }
     </script>
-    <script src="/js/modules/validator.js"></script>
     <script src="/d/profile/index.js"></script>
 
 @endsection
