@@ -51,7 +51,18 @@
             <div class="tab-pane active info-wrapper about-info-wrapper" id="about" role="tabpanel">
                 @if (count($about) > 0)
                     @foreach ($about as $item)
-                        <p>{{ $item['cname'] }}: {{ $item['value'] or '——' }}</p>
+                        <div class="about-info">
+                            <h5>
+                                {{ $item['cname'] }}:
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </h5>
+                            <p>{{ $item['value'] or '——' }}</p>
+                            <fieldset class="form-group">
+                                <textarea class="form-control" id="{{ $item['name'] }}" rows="3"></textarea>
+                                <button type="button" class="btn btn-primary about-modify" name="about">保存设置</button>
+                                <button type="button" class="btn btn-secondary about-cancel" data-dismiss="modal">关闭</button>
+                            </fieldset>
+                        </div>
                     @endforeach
                 @endif
             </div>
@@ -59,9 +70,39 @@
             @if (count($refers) > 0)
                 <div class="tab-pane info-wrapper refer-info-wrapper" id="refer" role="tabpanel">
                     @foreach ($refers as $refer)
-                        <p>推荐原因: {{ $refer->why }}</p>
-                        <p>描述: {{ $refer->description }}</p>
-                        <p>你们的故事: {{ $refer->story }}</p>
+                        <div class="refer-info">
+                            <h5>推荐原因:
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </h5>
+                            <p>{{ $refer->why }}</p>
+                            <fieldset class="form-group">
+                                <textarea class="form-control" id="why" rows="3"></textarea>
+                                <button type="button" class="btn btn-primary refer-modify" name="refer">保存设置</button>
+                                <button type="button" class="btn btn-secondary refer-cancel" data-dismiss="modal">关闭</button>
+                            </fieldset>
+                        </div>
+                        <div class="refer-info">
+                            <h5>描述:
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </h5>
+                            <p>{{ $refer->description }}</p>
+                            <fieldset class="form-group">
+                                <textarea class="form-control" id="description" rows="3"></textarea>
+                                <button type="button" class="btn btn-primary refer-modify" name="refer">保存设置</button>
+                                <button type="button" class="btn btn-secondary refer-cancel" data-dismiss="modal">关闭</button>
+                            </fieldset>
+                        </div>
+                        <div class="refer-info">
+                            <h5>你们的故事:
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </h5>
+                            <p>{{ $refer->story }}</p>
+                            <fieldset class="form-group">
+                                <textarea class="form-control" id="story" rows="3"></textarea>
+                                <button type="button" class="btn btn-primary refer-modify" name="refer">保存设置</button>
+                                <button type="button" class="btn btn-secondary refer-cancel" data-dismiss="modal">关闭</button>
+                            </fieldset>
+                        </div>
                     @endforeach
                 </div>
             @endif
@@ -90,18 +131,28 @@
                         <h4 class="modal-title">你的基本信息</h4>
                     </div>
                     <div class="modal-body">
-                        <form id="basicForm" action="/basic/update" method="POST">
+                        <form id="basicForm">
                             <div class="form-group">
-                                <label for="gender">性别</label>
-                                <input type="text" name="gender"/>
+                                <label for="gender">我是</label>
+                                <select class="c-select" name="gender">
+                                    <option value="男" selected>男</option>
+                                    <option value="女">女</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="city">城市</label>
-                                <input type="text" name="city"/>
+                                <input type="text" name="city" data-required="1" />
+                                <span class="empty-alert">城市不能为空</span>
                             </div>
                             <div class="form-group">
+                                <?php $minY = intval(date('Y', time() - 86400*365*88));?>
+                                <?php $y = intval(date('Y', time() - 86400*365*18));?>
                                 <label for="birth_year">出生年</label>
-                                <input type="text" name="birth_year"/>
+                                <select class="c-select" name="birth_year">
+                                @for ($y; $y > $minY; $y--)
+                                    <option value={{ $y }}>{{ $y }}</option>
+                                @endfor
+                                </select>
                             </div>
                         </form>
                     </div>
@@ -120,21 +171,29 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title">希望对方</h4>
+                        <h4 class="modal-title">寻找：</h4>
                     </div>
                     <div class="modal-body">
-                        <form id="targetForm" action="/target/update" method="POST">
+                        <form id="targetForm">
                             <div class="form-group">
-                                <label for="target_gender">目标群体</label>
-                                <input type="text" name="target_gender"/>
+                                这些关键词决定了我们为您展示的人
                             </div>
                             <div class="form-group">
-                                <label for="ageMin">最小年龄</label>
-                                <input type="text" name="ageMin"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="ageMax">最大年龄</label>
-                                <input type="text" name="ageMax"/>
+                                <label for="target_gender">想找</label>
+                                <label for="ageMin">年龄</label>
+                                <br/>
+                                <select class="c-select" name="target_gender">
+                                    <option value="不限">不限</option>
+                                    <option value="直">直</option>
+                                    <option value="弯">弯</option>
+                                    <option value="双">双</option>
+                                </select>
+                                <input type="text" name="ageMin" data-required="1" data-pattern="number"/>
+                                <span class="empty-alert">最小年龄不能为空</span>
+                                <span class="error-alert">请输入数字</span>
+                                <input type="text" name="ageMax" data-required="1" data-pattern="number"/>
+                                <span class="empty-alert">最大年龄不能为空</span>
+                                <span class="error-alert">请输入数字</span>
                             </div>
                             <div class="form-group">
                                 <label for="isSingle">一定要单身么</label>
@@ -145,8 +204,14 @@
                                 <input type="text" name="isNearBy"/>
                             </div>
                             <div class="form-group">
-                                <label for="relationship">预期关系</label>
-                                <input type="text" name="relationship"/>
+                                <label>想建立</label>
+                                <div class="pseudo-checkbox-container">
+                                    <span class="pseudo-checkbox" data-value="新朋友" data-select="0">新朋友</span>
+                                    <span class="pseudo-checkbox" data-value="长期约会" data-select="0">长期约会</span>
+                                    <span class="pseudo-checkbox" data-value="短期约会" data-select="0">短期约会</span>
+                                    <span class="pseudo-checkbox" data-value="待定" data-select="0">待定</span>
+                                    <input type="hidden" name="relationship" value=""/>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -158,47 +223,6 @@
             </div>
         </div>
 
-        <form id="aboutInfo" class="hidden" action="/about/update" method="POST">
-            <label for="summary">关于我
-                <input type="text" name="summary"/>
-            </label>
-            <label for="routine">每天我都在干啥
-                <input type="text" name="routine"/>
-            </label>
-            <label for="skills">我比较擅长
-                <input type="text" name="skills"/>
-            </label>
-            <label for="favorite">我最喜欢的书 电影 音乐 食物
-                <input type="text" name="favorite"/>
-            </label>
-            <label for="necessities">没有这几样我会抓狂
-                <input type="text" name="necessities"/>
-            </label>
-            <label for="concerns">我会想这些问题
-                <input type="text" name="concerns"/>
-            </label>
-            <label for="friday">周五晚上我会做些啥
-                <input type="text" name="friday"/>
-            </label>
-            <button type="submit" class="btn btn-primary">
-                <i class="fa fa-btn fa-user"></i>Modify
-            </button>
-        </form>
-        <form id="refer" class="hidden" action="/refer/update" method="POST">
-            <label for="why">why
-                <input type="text" name="why"/>
-            </label>
-            <label for="description">描述
-                <input type="text" name="description"/>
-            </label>
-            <label for="story">你们的故事
-                <input type="text" name="story"/>
-            </label>
-            <button type="submit" class="btn btn-primary">
-                <i class="fa fa-btn fa-user"></i>Modify
-            </button>
-        </form>
-
         <div id="detail-info-modal" class="modal fade">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -209,30 +233,58 @@
                         <h4 class="modal-title">我的更多细节</h4>
                     </div>
                     <div class="modal-body">
-                        <form id="detailForm" method="POST">
+                        <form id="detailForm">
                             <div class="form-group">
                                 <label for="orientation">取向</label>
-                                <input type="text" name="orientation"/>
+                                <select name="orientation">
+                                    <option value="直">直</option>
+                                    <option value="弯">弯</option>
+                                    <option value="双">双</option>
+                                    <option value="不分">不分</option>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label for="nationality">状态</label>
-                                <input type="text" name="nationality"/>
+                                <label for="status">情感状态</label>
+                                <select name="status">
+                                    <option value="单身">单身</option>
+                                    <option value="和别人交往">在和别人交往</option>
+                                    <option value="已婚">已婚</option>
+                                    <option value="在开放式关系中">在开放式关系中</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="height">身高</label>
-                                <input type="text" name="height"/>
+                                <input type="text" name="height" data-required="1" data-pattern="number"/>
+                                <span class="empty-alert">身高不能为空</span>
+                                <span class="error-alert">请输入数字</span>
                             </div>
                             <div class="form-group">
                                 <label for="weight">体重</label>
-                                <input type="text" name="weight"/>
+                                <select name="weight">
+                                    <option value="暂时不想说">暂时不想说</option>
+                                    <option value="瘦">瘦</option>
+                                    <option value="瘦高">瘦高</option>
+                                    <option value="匀称">匀称</option>
+                                    <option value="微胖">微胖</option>
+                                    <option value="胖">胖</option>
+                                    <option value="胖又圆">胖又圆</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="smoking">吸烟</label>
-                                <input type="text" name="smoking"/>
+                                <select name="smoking">
+                                    <option value="是">是</option>
+                                    <option value="否">否</option>
+                                    <option value="有时">有时</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="drinking">饮酒</label>
-                                <input type="text" name="drinking"/>
+                                <select name="drinking">
+                                    <option value="是">是</option>
+                                    <option value="否">否</option>
+                                    <option value="社交场合">社交场合</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="religion">宗教</label>
@@ -240,11 +292,20 @@
                             </div>
                             <div class="form-group">
                                 <label for="education">教育</label>
-                                <input type="text" name="education"/>
+                                <select name="education">
+                                    <option value="高中">高中</option>
+                                    <option value="本科">本科</option>
+                                    <option value="硕士">硕士</option>
+                                    <option value="博士">博士</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="offspring">娃</label>
-                                <input type="text" name="offspring"/>
+                                <select name="offspring">
+                                    <option value="暂时不想说">暂时不想说</option>
+                                    <option value="有">有</option>
+                                    <option value="无">无</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="pet">宠物</label>

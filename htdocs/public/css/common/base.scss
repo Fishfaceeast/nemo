@@ -38,3 +38,22 @@ h4 {
 /*==== temp buffer for cosmo/index.scss =====*/
 
 /*====== END =======*/
+.empty-alert, .error-alert {
+	display: none;
+	font-size: 13px;
+	color: #f44545;
+}
+.error, .empty {
+	input, textarea {
+		border: 1px solid #f44545;
+		background-color: #feeeee;
+	}
+}
+.empty .empty-alert, .error .error-alert {
+	display: inline-block;
+}
+.empty .error-alert {
+	display: none;
+}
+
+
