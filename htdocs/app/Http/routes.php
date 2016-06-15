@@ -81,12 +81,16 @@ Route::post('/about/update', 'AboutController@update');
 // refer Info Routes...
 Route::post('/refer/update', 'ReferController@update');
 
+// match Routes...
+Route::get('/match', 'MatchController@index');
+Route::post('/match/search', 'MatchController@search');
+
 Route::get('/', function () {
-	return redirect('/tasks');
+	return redirect('/profile');
 });
 
 Route::auth();
 
 Route::get('/home', function () {
-	return redirect('/tasks');
+	return redirect('/profile');
 });

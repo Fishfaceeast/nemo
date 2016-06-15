@@ -27,7 +27,7 @@ class DetailRepository {
 		foreach(Detail::$itemText as $key => $text) {
 			$ret[$key]['name'] = $key;
 			$ret[$key]['cname'] = $text;
-			$ret[$key]['value'] = $detailCollection->$key;
+			$ret[$key]['value'] = isset($detailCollection->$key) ? $detailCollection->$key : '';
 		}
 		return $ret;
 	}

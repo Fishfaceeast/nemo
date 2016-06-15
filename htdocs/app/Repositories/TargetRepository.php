@@ -27,7 +27,7 @@ class TargetRepository {
 		foreach(Target::$itemText as $key => $text) {
 			$ret[$key]['name'] = $key;
 			$ret[$key]['cname'] = $text;
-			$ret[$key]['value'] = $targetCollection->$key;
+			$ret[$key]['value'] = isset($targetCollection->$key) ? $targetCollection->$key : '';
 		}
 		return $ret;
 	}
