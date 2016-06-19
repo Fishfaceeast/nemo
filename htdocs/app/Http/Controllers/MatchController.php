@@ -50,16 +50,17 @@ class MatchController extends Controller {
 	 */
 	public function index(Request $request) {
 		$fields = [
-			'gender' => 'male',
-			'city'   => 'beijing',
-			'ageMin' => '28',
+			'gender'  => '男',
+			'city'    => '北京',
+			'smoking' => '有时',
+			'drinking' => '否',
+			'isSingle' => '1',
 		];
 		$groupFields = $this->groupFields($fields);
 		$users = $this->getUsers($groupFields);
 
-//		$users = DB::table('basics')->where('gender', '=', '男')->get();
-//		var_dump($users);
-//		die;
+		var_dump($users);
+		die;
 
 		return view('match.index');
 	}
@@ -77,7 +78,7 @@ class MatchController extends Controller {
 				if(!isset($ret[$dbName])) {
 					$ret[$dbName] = [];
 				}
-				$ret[$dbName][] = [$key => $value];
+				$ret[$dbName][] = [$key, $value];
 			}
 		}
 		return $ret;
@@ -95,8 +96,8 @@ class MatchController extends Controller {
 
 	private function getUsers($groupFields) {
 		$ret = [
-			'id' => [],
-			'data' => [],
+			'id'    => [],
+			'data'  => [],
 			'total' => 0,
 		];
 		foreach($groupFields as $table => $groupField) {
@@ -105,21 +106,32 @@ class MatchController extends Controller {
 				'data' => [],
 			];
 			$hits = $this->query($table, $groupField);
+
+			// 某个表的query无结果
+			if(!count($hits)) {
+				break;
+			}
+
 			foreach($hits as $hit) {
 				$id = $hit->user_id;
 				$item['id'][] = $id;
 				$item['data'][$id] = $hit;
 			}
-			if(!count($ret['id'])){
+			if(empty($ret['id'])) { // 第一次query
 				$ret['id'] = $item['id'];
 				$ret['data'] = $item['data'];
 			} else {
 				$ret['id'] = array_intersect($ret['id'], $item['id']);
 				if(count($ret['id'])) {
-					foreach($ret['id'] as $id) {
-						$ret['data'][$id] = (object) array_merge((array) $ret['data'][$id], (array) $item['data'][$id]);
+					foreach($ret['data'] as $id => $attr) {
+						if (in_array($id, $ret['id'])) {
+							$ret['data'][$id] = (object) array_merge((array) $ret['data'][$id], (array) $item['data'][$id]);
+						} else {
+							unset($ret['data'][$id]);
+						}
 					}
 				} else {
+					$ret['data'] = [];
 					break;
 				}
 			}
