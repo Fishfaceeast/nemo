@@ -49,6 +49,12 @@ class MatchController extends Controller {
 	 * @return Response
 	 */
 	public function index(Request $request) {
+		return view('match.index');
+	}
+
+	protected function search(Request $request) {
+		$fields = $request->all();
+
 		$fields = [
 			'gender'  => '男',
 			'city'    => '北京',
@@ -61,12 +67,6 @@ class MatchController extends Controller {
 
 		var_dump($users);
 		die;
-
-		return view('match.index');
-	}
-
-	protected function search(Request $request) {
-		$fields = $request->all();
 
 	}
 
