@@ -43,6 +43,7 @@ function genWebpackConfig(opt) {
 		entry: {
 			'common': './js/common',
 			'profile': './js/profile',
+			'match': './js/match',
 		},
 		output: {
 			filename: '[name]/index.js',

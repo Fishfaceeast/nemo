@@ -254,8 +254,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="height">身高</label>
-                                <input type="text" name="height" data-required="1" data-pattern="number"/>
-                                <span class="empty-alert">身高不能为空</span>
+                                <input type="text" name="height" data-required="1" data-must="" data-pattern="number"/>
                                 <span class="error-alert">请输入数字</span>
                             </div>
                             <div class="form-group">
@@ -288,7 +287,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="religion">宗教</label>
-                                <input type="text" name="religion"/>
+                                <input type="text" name="religion" data-required="1" data-must="1"/>
+                                <span class="empty-alert">不能为空</span>
                             </div>
                             <div class="form-group">
                                 <label for="education">教育</label>
@@ -309,7 +309,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="pet">宠物</label>
-                                <input type="text" name="pet"/>
+                                <input type="text" name="pet" data-required="1" data-must="1" data-pattern="number"/>
+                                <span class="empty-alert">不能为空</span>
+                                <span class="error-alert">请输入数字</span>
                             </div>
                         </form>
                     </div>

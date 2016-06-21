@@ -1,5 +1,11 @@
 @extends('layouts.common')
 
+@section('styles')
+    @parent
+    <link rel="stylesheet" href="/d/auth/index.css">
+
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">

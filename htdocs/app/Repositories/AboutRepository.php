@@ -27,7 +27,7 @@ class AboutRepository {
 		foreach(About::$itemText as $key => $text) {
 			$ret[$key]['name'] = $key;
 			$ret[$key]['cname'] = $text;
-			$ret[$key]['value'] = $aboutCollection->$key;
+			$ret[$key]['value'] = isset($aboutCollection->$key) ? $aboutCollection->$key : '';
 		}
 		return $ret;
 	}

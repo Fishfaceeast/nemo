@@ -27,7 +27,7 @@ class BasicRepository {
 		foreach(Basic::$itemText as $key => $text) {
 			$ret[$key]['name'] = $key;
 			$ret[$key]['cname'] = $text;
-			$ret[$key]['value'] = $basicCollection->$key;
+			$ret[$key]['value'] = isset($basicCollection->$key) ? $basicCollection->$key : '';
 		}
 		return $ret;
 	}

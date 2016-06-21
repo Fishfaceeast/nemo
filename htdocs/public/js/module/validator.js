@@ -1,5 +1,10 @@
 /**
  * Created by yuqian on 16/6/5.
+ * data-required: '1' - need validation
+ * data-must: '1' - must fill
+ * data-pattern:
+ *   'number' - must be number
+ *   ...
  */
 export default class Validator {
 	constructor(form, option) {
@@ -35,15 +40,16 @@ export default class Validator {
 		})
 	}
 	validate(item) {
-		let pattern = this.patterns[$(item).data('pattern')]
 		let $parent = $(item).parent()
 		let text = $(item).val()
+		let pattern = this.patterns[$(item).data('pattern')]
 		if(!text) {
-			$parent.addClass('empty')
-			return false
-		}
-		if(pattern) {
-			if(!pattern.test(text)) {
+			if($(item).data('must')) {
+				$parent.addClass('empty')
+				return false
+			}
+		} else {
+			if(pattern && !pattern.test(text)) {
 				$parent.addClass('error')
 				return false
 			}
