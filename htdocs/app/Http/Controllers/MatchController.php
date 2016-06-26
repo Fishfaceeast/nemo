@@ -54,19 +54,17 @@ class MatchController extends Controller {
 
 	protected function search(Request $request) {
 		$fields = $request->all();
-
-		$fields = [
-			'gender'  => '男',
-			'city'    => '北京',
-			'smoking' => '有时',
-			'drinking' => '否',
-			'isSingle' => '1',
-		];
+//		$fields = [
+//			'gender'  => '男',
+//			'city'    => '北京',
+//			'smoking' => '有时',
+//			'drinking' => '否',
+//			'isSingle' => '1',
+//		];
 		$groupFields = $this->groupFields($fields);
 		$users = $this->getUsers($groupFields);
 
-		var_dump($users);
-		die;
+		return $users;
 
 	}
 
@@ -136,12 +134,26 @@ class MatchController extends Controller {
 				}
 			}
 		}
+		$registerHits = $this->inQuery('users', 'id', $ret['id']);
+		$names = [];
+		foreach($registerHits as $hit) {
+			$id = $hit->id;
+			$names[$id] = $hit->name;
+		}
+		foreach($ret['data'] as $id => $attr) {
+			$ret['data'][$id]->name = $names[$id];
+		}
 		$ret['total'] = count($ret['id']);
 		return $ret;
 	}
 
 	private function query($table, $fields) {
-		$users = DB::table($table)->where($fields)->get();
-		return $users;
+		$qr = DB::table($table)->where($fields)->get();
+		return $qr;
+	}
+
+	private function inQuery($table, $key, $arr) {
+		$qr = DB::table($table)->whereIn($key, $arr)->get();
+		return $qr;
 	}
 }
