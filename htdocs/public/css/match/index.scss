@@ -1,3 +1,16 @@
+.main-container {
+	width: 1200px;
+}
+.nav-tabs .nav-item + .nav-item {
+	margin-left: 0;
+}
+.nav-tabs .nav-item {
+	width: 25%;
+}
+.board {
+	width: 960px;
+	margin: 0 auto;
+}
 .base-search {
 	strong {
 		cursor: pointer;
@@ -14,6 +27,19 @@
 		height: 30px;
 		line-height: 30px;
 	}
+	form {
+		max-width: 800px;
+		float: left;
+		height: 40px;
+		line-height: 40px;
+		font-size: 16px;
+	}
+}
+i.fa-sliders {
+	float: right;
+	font-size: 22px;
+	color: #014c8c;
+	cursor: pointer;
 }
 span.arrow-box {
 	min-width: 200px;
@@ -51,4 +77,38 @@ span.arrow-box {
 	border-bottom-color: #c2e1f5;
 	border-width: 13px;
 	margin-left: -13px;
+}
+// advanced search
+.advanced-search {
+	background-color: #104da1;
+}
+.tab-pane {
+	text-align: center;
+	padding: 30px 0;
+	& > div {
+		width: 300px;
+		float: left;
+		p {
+			font-size: 18px;
+		}
+	}
+	button {
+		margin: 30px 10px 0 10px;
+	}
+}
+// card
+.card {
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	margin: 20px;
+	width: 280px;
+	height: 360px;
+	float: left;
+	border-radius: 10px;
+	text-align: center;
+	img {
+		width: 100%;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
+	}
 }
