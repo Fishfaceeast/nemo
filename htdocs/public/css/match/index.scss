@@ -95,6 +95,15 @@ span.arrow-box {
 	button {
 		margin: 30px 10px 0 10px;
 	}
+	.choice-block {
+		border-radius: 4px;
+		display: inline-block;
+		cursor: pointer;
+		&.active {
+			border: 1px solid #fff;
+			color: #fff;
+		}
+	}
 }
 // card
 .card {
