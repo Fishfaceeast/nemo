@@ -1,3 +1,27 @@
+body {
+	font-size: 16px;
+	div.section-container {
+		margin-top: 54px;
+		background-color: #104da1;
+		position: relative;
+		#cover {
+			width: 100%;
+			height: 304px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			opacity: 0.5;
+			background-color: cadetblue;
+			span.close-cover {
+				color: #fff;
+				display: block;
+				float: right;
+				font-size: 22px;
+				font-weight: bold;
+			}
+		}
+	}
+}
 .main-container {
 	width: 1200px;
 }
@@ -12,6 +36,11 @@
 	margin: 0 auto;
 }
 .base-search {
+	color: #fff;
+	padding-top: 20px;
+	.main-container {
+		margin-top: 0;
+	}
 	strong {
 		cursor: pointer;
 		font-weight: normal;
@@ -22,6 +51,14 @@
 		&.open .pop-over {
 			display: inline-block;
 		}
+	}
+	.adv-feature strong {
+		border-radius: 4px;
+		color: #fff;
+		display: inline-block;
+		min-width: 90px;
+		height: 30px;
+		line-height: 30px;
 	}
 	div {
 		height: 30px;
@@ -38,7 +75,7 @@
 i.fa-sliders {
 	float: right;
 	font-size: 22px;
-	color: #014c8c;
+	color: #fff;
 	cursor: pointer;
 }
 span.arrow-box {
@@ -78,10 +115,6 @@ span.arrow-box {
 	border-width: 13px;
 	margin-left: -13px;
 }
-// advanced search
-.advanced-search {
-	background-color: #104da1;
-}
 .tab-pane {
 	text-align: center;
 	padding: 30px 0;
@@ -97,8 +130,11 @@ span.arrow-box {
 	}
 	.choice-block {
 		border-radius: 4px;
-		display: inline-block;
 		cursor: pointer;
+		display: inline-block;
+		min-width: 72px;
+		height: 30px;
+		line-height: 30px;
 		&.active {
 			border: 1px solid #fff;
 			color: #fff;
