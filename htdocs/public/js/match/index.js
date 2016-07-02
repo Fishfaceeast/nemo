@@ -104,7 +104,6 @@ $('.advanced-search select').on('change', function() {
 })
 
 $('.btn-search').on('click', function(e) {
-
 	if(advKey.length > 0) {
 		let data = $.extend(true, advanceData, baseData)
 		$.post(MATCH_URL, data, function(res) {
@@ -115,7 +114,8 @@ $('.btn-search').on('click', function(e) {
 		makePanel(advKey)
 	}
 	$('.advanced-search').hide()
-
+	$cover.hide()
+	$('.fa-sliders').show()
 })
 
 $('.btn-cancel').on('click', function() {
@@ -123,13 +123,15 @@ $('.btn-cancel').on('click', function() {
 })
 
 $('.fa-sliders').on('click', function() {
-	$('.advanced-search').toggle()
+	$('.advanced-search').show()
+	$(this).hide()
 	$cover.show()
 })
 
 $('.close-cover').on('click', function() {
 	$cover.hide()
-	$('.advanced-search').toggle()
+	$('.fa-sliders').show()
+	$('.advanced-search').hide()
 })
 
 $('.adv-feature').on('click', '.clearIt', function(e) {
