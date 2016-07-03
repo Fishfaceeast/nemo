@@ -185,6 +185,7 @@
                             <option value="有时">有时</option>
                         </select>
                     </div>
+                    <div class="smoke-slider"></div>
                     <div data-key="drinking" data-type="select">
                         <p class="feature-title">饮酒</p>
                         <select name="drinking">

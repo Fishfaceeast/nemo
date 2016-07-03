@@ -1,4 +1,5 @@
 import Validator from '../module/validator.js'
+import GrooveSlider from '../module/groove-slider.js'
 
 const MATCH_URL = '/match/search'
 
@@ -166,4 +167,6 @@ var init = function(key) {
 	}
 
 }
+
+var smokeSlider = new GrooveSlider('.smoke-slider', 0, {unitLength: 87})
 
