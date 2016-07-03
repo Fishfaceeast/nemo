@@ -168,5 +168,5 @@ var init = function(key) {
 
 }
 
-var smokeSlider = new GrooveSlider('.smoke-slider', 0, {unitLength: 87})
+var smokeSlider = new GrooveSlider('.smoke-slider', 0, {unitLength: 85})
 

@@ -2,17 +2,21 @@
 	position: relative;
 	height: 40px;
 	.groove-bar {
+		background-color: #104da1;
 		height: 8px;
 		line-height: 1;
 		position: relative;
+		width: 261px;
 		.groove {
-			background-color: #104da1;
 			border-right: 2px solid #3260c7;
 			display: block;
 			float: left;
 			width: 87px;
 			height: 8px;
 			cursor: pointer;
+			z-index: 2;
+			background: transparent;
+			position: relative;
 		}
 		.meter {
 			background-color: #ff597e;
@@ -21,6 +25,7 @@
 			top: 0;
 			width: 0;
 			height: 8px;
+			z-index: 1;
 		}
 	}
 	.leftHandle, .rightHandle {
@@ -31,6 +36,7 @@
 		height: 20px;
 		position: absolute;
 		top: -6px;
+		z-index: 2;
 		&.hidden {
 			display: none;
 		}

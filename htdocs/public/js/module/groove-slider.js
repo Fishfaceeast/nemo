@@ -3,10 +3,10 @@
  */
 const _template = `
 	<div class="groove-bar clearfix">
+		<strong class="meter"></strong>
 		<span class="groove" data-value="1"></span>
 		<span class="groove" data-value="2"></span>
 		<span class="groove" data-value="3"></span>
-		<strong class="meter"></strong>
 	</div>
 	<div class="leftHandle"></div>
 	<div class="rightHandle "></div>
@@ -64,7 +64,7 @@ export default class GrooveSlider {
 					self.$leftHandle.animate(q, time)
 				}).animate(q, time)
 				self.$rightHandle.animate({
-					left: self.unit
+					left: "+=" + self.unit + "px"
 				}, UNITTIME).animate(q, time)
 			} else {
 				let p = {
