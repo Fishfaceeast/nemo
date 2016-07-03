@@ -1,0 +1,60 @@
+.groove-slider {
+	position: relative;
+	height: 40px;
+	.groove-bar {
+		background-color: #104da1;
+		height: 8px;
+		line-height: 1;
+		position: relative;
+		width: 261px;
+		.groove {
+			border-right: 2px solid #3260c7;
+			display: block;
+			float: left;
+			width: 87px;
+			height: 8px;
+			cursor: pointer;
+			z-index: 2;
+			background: transparent;
+			position: relative;
+		}
+		.meter {
+			background-color: #ff597e;
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 0;
+			height: 8px;
+			z-index: 1;
+		}
+	}
+	.leftHandle, .rightHandle {
+		background-color: #fff;
+		border-radius: 10px;
+		display: inline-block;
+		width: 20px;
+		height: 20px;
+		position: absolute;
+		top: -6px;
+		z-index: 2;
+		&.hidden {
+			display: none;
+		}
+	}
+	.leftHandle {
+		left: -10px;
+	}
+	.rightHandle {
+		background-color: pink;
+		left: -10px;
+	}
+	p.reset {
+		color: #fff;
+		font-size: 14px;
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		margin: 0;
+		cursor: pointer;
+	}
+}
