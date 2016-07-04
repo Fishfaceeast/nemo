@@ -2,6 +2,20 @@ import Validator from '../module/validator.js'
 import GrooveSlider from '../module/groove-slider.js'
 
 const MATCH_URL = '/match/search'
+const sliderDataMap = {
+	'smoking': {
+		'0': '',
+		'1': '否',
+		'2': '有时',
+		'3': '是',
+	},
+	'drinking': {
+		'0': '',
+		'1': '否',
+		'2': '社交场合',
+		'3': '是',
+	}
+}
 
 var $board = $('.board')
 var $panel = $('.adv-feature')
@@ -10,6 +24,8 @@ var $cover = $('#cover')
 var baseData = {}
 var advanceData = {}
 var advKey = []
+
+var vehicle = $({})
 
 $('.pop-over').on('click', function(e) {
 	e.stopPropagation()
@@ -158,15 +174,40 @@ var init = function(key) {
 	switch (type) {
 		case 'select':
 			$sel.find('option:nth-child(1)').attr('selected', 'selected')
-			break;
+			break
 		case 'checkbox':
 			console.log('checkbox coming soon')
-			break;
+			break
+		case 'smokingSlider':
+			smokingSlider.reset()
+			vehicle.trigger('grooveSlider::reset', [0, key])
+			break
+		case 'drikingSlider':
+			drikingSlider.reset()
+			vehicle.trigger('grooveSlider::reset', [0, key])
+			break
 		default:
 			$sel.find('.choice-block').removeClass('active')
 	}
 
 }
 
-var smokeSlider = new GrooveSlider('.smoke-slider', 0, {unitLength: 85})
+var smokingSlider = new GrooveSlider(vehicle, '.smoke-slider', 0, {
+	unitLength: 85,
+	fieldKey: 'smoking'
+})
 
+var drinkingSlider = new GrooveSlider(vehicle, '.drink-slider', 0, {
+	unitLength: 85,
+	fieldKey: 'drinking'
+})
+
+vehicle.on('grooveSlider::select', function(e, state, k) {
+	advanceData[k] = sliderDataMap[k][state]
+	advKey.push(k)
+})
+
+vehicle.on('grooveSlider::reset', function(e, state, k) {
+	delete advanceData[k]
+	advKey = _.without(advKey,k)
+})
