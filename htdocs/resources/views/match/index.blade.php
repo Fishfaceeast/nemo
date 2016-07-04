@@ -176,24 +176,13 @@
                     <button type="button" class="btn btn-secondary btn-cancel">取消</button>
                 </div>
                 <div class="tab-pane clearfix" id="vice" role="tabpanel">
-                    <div data-key="smoking" data-type="select">
+                    <div data-key="smoking" data-type="smokingSlider">
                         <p class="feature-title">吸烟</p>
-                        <select name="smoking">
-                            <option value="">请选择</option>
-                            <option value="是">是</option>
-                            <option value="否">否</option>
-                            <option value="有时">有时</option>
-                        </select>
+                        <div class="smoke-slider"></div>
                     </div>
-                    <div class="smoke-slider"></div>
-                    <div data-key="drinking" data-type="select">
+                    <div data-key="drinking" data-type="drikingSlider">
                         <p class="feature-title">饮酒</p>
-                        <select name="drinking">
-                            <option value="">请选择</option>
-                            <option value="是">是</option>
-                            <option value="否">否</option>
-                            <option value="社交场合">社交场合</option>
-                        </select>
+                        <div class="drink-slider"></div>
                     </div>
                     <button type="button" class="btn btn-primary btn-search">搜索</button>
                     <button type="button" class="btn btn-secondary btn-cancel">取消</button>

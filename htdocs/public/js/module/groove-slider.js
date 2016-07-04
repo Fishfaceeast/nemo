@@ -15,11 +15,13 @@ const _template = `
 const UNITTIME = 300
 
 export default class GrooveSlider {
-	constructor(target, prop, option) {
-		this.$wrapper = $('<div class="groove-slider"></div>')
+	constructor(publicVehicle, target, prop, config) {
+		this.publicVehicle = publicVehicle
 		this.privateVehicle = $({})
+		this.$wrapper = $('<div class="groove-slider"></div>')
 		this.state = prop
-		this.unit = option.unitLength
+		this.unit = config.unitLength
+		this.fieldKey = config.fieldKey
 		this._init(target)
 		this.$meter = this.$wrapper.find('.meter')
 		this.$leftHandle = this.$wrapper.find('.leftHandle')
@@ -77,13 +79,15 @@ export default class GrooveSlider {
 			}
 
 			self.state = val
+			self.publicVehicle.trigger('grooveSlider::select', [self.state, self.fieldKey])
 		})
 		self.privateVehicle.on('action::reset', function() {
-			self._reset()
+			self.reset()
+			self.publicVehicle.trigger('grooveSlider::reset', [self.state, self.fieldKey])
 		})
 	}
 
-	_reset() {
+	reset() {
 		this.state = 0
 		this._render()
 		// after render, these three elements should be passed again
