@@ -184,9 +184,8 @@
                                 <br/>
                                 <select class="c-select" name="target_gender">
                                     <option value="不限">不限</option>
-                                    <option value="直">直</option>
-                                    <option value="弯">弯</option>
-                                    <option value="双">双</option>
+                                    <option value="男">男</option>
+                                    <option value="女">女</option>
                                 </select>
                                 <input type="text" name="ageMin" data-required="1" data-pattern="number"/>
                                 <span class="empty-alert">最小年龄不能为空</span>

@@ -9,11 +9,18 @@
 namespace App\Http\Controllers;
 
 use DB;
+use App\Basic;
+use App\Target;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\BasicRepository;
+use App\Repositories\TargetRepository;
 
 class MatchController extends Controller {
+
+	protected $basic;
+	protected $target;
 
 	protected $originMap = [
 		'basics' => [
@@ -33,13 +40,19 @@ class MatchController extends Controller {
 		],
 	];
 
+	protected $baseField = [
+		'gender', 'city', 'target_gender',
+	];
+
 	/**
 	 * Create a new controller instance.
 	 * @return void
 	 */
-	public function __construct() {
+	public function __construct(BasicRepository $basic, TargetRepository $target) {
 		$this->middleware('auth');
 		$this->dbMap = $this->reverseMap($this->originMap);
+		$this->basic = $basic;
+		$this->target = $target;
 	}
 
 	/**
@@ -49,18 +62,27 @@ class MatchController extends Controller {
 	 * @return Response
 	 */
 	public function index(Request $request) {
-		return view('match.index');
+		$raw = array_merge($this->basic->forUser($request->user()), $this->target->forUser($request->user()));
+		$defaultBaseData = [];
+		foreach ($this->baseField as $baseField) {
+			if(isset($raw[$baseField])) {
+				$defaultBaseData[$baseField] = $raw[$baseField];
+			}
+		}
+		return view('match.index', [
+			'defaultBase' => $defaultBaseData,
+		]);
 	}
 
+//	$fields = [
+//		'gender'  => '男',
+//		'city'    => '北京',
+//		'smoking' => '有时',
+//		'drinking' => '否',
+//		'isSingle' => '1',
+//	]
 	protected function search(Request $request) {
 		$fields = $request->all();
-//		$fields = [
-//			'gender'  => '男',
-//			'city'    => '北京',
-//			'smoking' => '有时',
-//			'drinking' => '否',
-//			'isSingle' => '1',
-//		];
 		$groupFields = $this->groupFields($fields);
 		$users = $this->getUsers($groupFields);
 

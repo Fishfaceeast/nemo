@@ -1,6 +1,55 @@
 import Validator from '../module/validator.js'
 import GrooveSlider from '../module/groove-slider.js'
 
+var defaultBase = __data.defaultBase
+var baseData = {
+	gender: __data.defaultBase["target_gender"].value,
+	target_gender: __data.defaultBase["gender"].value,
+	city: __data.defaultBase["city"].value
+}
+
+var baseTemplate = `
+	<strong>
+		<i class="pop-switch">
+			搜一下：${baseData["gender"]}，
+		</i>
+		<span class="arrow-box pop-over">
+			<h4>性别</h4>
+			<div data-key="gender">
+				<span class="choice-block base-choice ${isChoiceActive('gender', '男')}" data-value="男">男</span>
+				<span class="choice-block base-choice ${isChoiceActive('gender', '女')}" data-value="女">女</span>
+			</div>
+		</span>
+	</strong>
+	<strong>
+		<i class="pop-switch">
+			对${baseData["target_gender"]}性感兴趣，
+		</i>
+		<span class="arrow-box pop-over">
+			<h4>性向</h4>
+			<div data-key="target_gender">
+				<span class="choice-block base-choice ${isChoiceActive('target_gender', '男')}" data-value="男">男</span>
+				<span class="choice-block base-choice ${isChoiceActive('target_gender', '女')}" data-value="女">女</span>
+			</div>
+		</span>
+	</strong>
+	<strong>
+		<i class="pop-switch">
+			坐标${baseData["city"]}。
+		</i>
+		<span class="arrow-box pop-over">
+			<h4>位于</h4>
+			<div data-key="city">
+				<input id="city" type="text" value="${baseData['city']}"/>
+			</div>
+		</span>
+	</strong>
+	`
+
+function isChoiceActive(key, value) {
+	return value == baseData[key] ? 'active' : ''
+}
+
 const MATCH_URL = '/match/search'
 const sliderDataMap = {
 	'smoking': {
@@ -21,11 +70,12 @@ var $board = $('.board')
 var $panel = $('.adv-feature')
 var $cover = $('#cover')
 
-var baseData = {}
 var advanceData = {}
 var advKey = []
 
 var vehicle = $({})
+
+$('#base-form').html(baseTemplate)
 
 $('.pop-over').on('click', function(e) {
 	e.stopPropagation()
