@@ -1,55 +1,6 @@
 import Validator from '../module/validator.js'
 import GrooveSlider from '../module/groove-slider.js'
 
-var defaultBase = __data.defaultBase
-var baseData = {
-	gender: __data.defaultBase["target_gender"].value,
-	target_gender: __data.defaultBase["gender"].value,
-	city: __data.defaultBase["city"].value
-}
-
-var baseTemplate = `
-	<strong>
-		<i class="pop-switch">
-			搜一下：${baseData["gender"]}，
-		</i>
-		<span class="arrow-box pop-over">
-			<h4>性别</h4>
-			<div data-key="gender">
-				<span class="choice-block base-choice ${isChoiceActive('gender', '男')}" data-value="男">男</span>
-				<span class="choice-block base-choice ${isChoiceActive('gender', '女')}" data-value="女">女</span>
-			</div>
-		</span>
-	</strong>
-	<strong>
-		<i class="pop-switch">
-			对${baseData["target_gender"]}性感兴趣，
-		</i>
-		<span class="arrow-box pop-over">
-			<h4>性向</h4>
-			<div data-key="target_gender">
-				<span class="choice-block base-choice ${isChoiceActive('target_gender', '男')}" data-value="男">男</span>
-				<span class="choice-block base-choice ${isChoiceActive('target_gender', '女')}" data-value="女">女</span>
-			</div>
-		</span>
-	</strong>
-	<strong>
-		<i class="pop-switch">
-			坐标${baseData["city"]}。
-		</i>
-		<span class="arrow-box pop-over">
-			<h4>位于</h4>
-			<div data-key="city">
-				<input id="city" type="text" value="${baseData['city']}"/>
-			</div>
-		</span>
-	</strong>
-	`
-
-function isChoiceActive(key, value) {
-	return value == baseData[key] ? 'active' : ''
-}
-
 const MATCH_URL = '/match/search'
 const sliderDataMap = {
 	'smoking': {
@@ -66,6 +17,56 @@ const sliderDataMap = {
 	}
 }
 
+var defaultBase = __data.defaultBase
+var baseData = {
+	gender: defaultBase["target_gender"].value,
+	target_gender: defaultBase["gender"].value,
+	city: defaultBase["city"].value
+}
+
+var baseTemplate = data => `
+	<strong>
+		<i class="pop-switch">
+			搜一下：${data["gender"]}，
+		</i>
+		<span class="arrow-box pop-over">
+			<h4>性别</h4>
+			<div data-key="gender">
+				<span class="choice-block base-choice ${isChoiceActive('gender', '男')}" data-value="男">男</span>
+				<span class="choice-block base-choice ${isChoiceActive('gender', '女')}" data-value="女">女</span>
+			</div>
+		</span>
+	</strong>
+	<strong>
+		<i class="pop-switch">
+			对${data["target_gender"]}性感兴趣，
+		</i>
+		<span class="arrow-box pop-over">
+			<h4>性向</h4>
+			<div data-key="target_gender">
+				<span class="choice-block base-choice ${isChoiceActive('target_gender', '男')}" data-value="男">男</span>
+				<span class="choice-block base-choice ${isChoiceActive('target_gender', '女')}" data-value="女">女</span>
+			</div>
+		</span>
+	</strong>
+	<strong>
+		<i class="pop-switch">
+			坐标${data["city"]}。
+		</i>
+		<span class="arrow-box pop-over">
+			<h4>位于</h4>
+			<div data-key="city">
+				<input id="city" type="text" value="${data['city']}"/>
+			</div>
+		</span>
+	</strong>
+	`
+
+function isChoiceActive(key, value) {
+	return value == baseData[key] ? 'active' : ''
+}
+
+var $baseForm = $('#base-form')
 var $board = $('.board')
 var $panel = $('.adv-feature')
 var $cover = $('#cover')
@@ -75,24 +76,55 @@ var advKey = []
 
 var vehicle = $({})
 
-$('#base-form').html(baseTemplate)
+function renderSentence(data) {
+	$baseForm.html(baseTemplate(data))
+}
 
-$('.pop-over').on('click', function(e) {
+const sendQuery = (req) => {
+	$.post(MATCH_URL, req, (res) => {
+		if(res.data){
+			makeCard(res.data)
+		}
+	})
+}
+
+$baseForm.on('click', '.pop-over', function(e) {
 	e.stopPropagation()
 })
-$('.pop-switch').on('click', function(e) {
+$baseForm.on('click', '.pop-switch', function(e) {
 	e.stopPropagation()
 	let $parent = $(this).parent()
 	$parent.toggleClass('open').siblings().removeClass('open')
 	$('body').addClass('pop-open')
 })
+$baseForm.on('click', '.base-choice', function(e) {
+	let $target = $(e.target)
+	let key = $target.parent().data('key')
+	let val = $target.data('value')
+
+	if($target.hasClass('active')) {
+		delete baseData[key]
+	} else {
+		baseData[key] = val
+		$target.siblings().removeClass('active')
+	}
+	$target.toggleClass('active')
+
+})
+$baseForm.on('change', 'input', function() {
+	let key = $(this).parent().data('key')
+	let val = $(this).val()
+
+	if(val) {
+		baseData[key] = val
+	} else {
+		delete baseData[key]
+	}
+})
 $('body').on('click', function(e) {
 	if($(this).hasClass('pop-open')) {
-		$.post(MATCH_URL, baseData, function(res) {
-			if(res.data) {
-				makeCard(res.data)
-			}
-		})
+		renderSentence(baseData)
+		sendQuery(baseData)
 		$('.pop-switch').parent().removeClass('open')
 		$(this).removeClass('pop-open')
 	}
@@ -100,8 +132,8 @@ $('body').on('click', function(e) {
 
 const makeCard = (items) => {
 	let str = ''
-	let d = new Date();
-	let y = d.getFullYear();
+	let d = new Date()
+	let y = d.getFullYear()
 	$.each(items, function(id, obj) {
 		let age = y - parseInt(obj.birth_year)
 		str += `<div class="card"><img src="/img/avatar.png"><h4 class="name">${obj.name}</h4><p><span>${age}</span><span>·</span><span>${obj.city}</span></p></div>`
@@ -116,30 +148,6 @@ const makePanel = (arr) => {
 	})
 	$panel.html(str)
 }
-
-$('.base-choice').on('click', function(e) {
-	let $target = $(e.target)
-	let key = $target.parent().data('key')
-	let val = $target.data('value')
-
-
-	if(!$target.hasClass('active')) {
-		baseData[key] = val
-		$target.siblings().removeClass('active')
-	}
-	$target.toggleClass('active')
-
-})
-$('#base-form input').on('change', function(e) {
-	let key = $(this).parent().data('key')
-	let val = $(this).val()
-
-	if(val) {
-		baseData[key] = val
-	} else {
-		delete baseData[key]
-	}
-})
 
 $('.adv-choice').on('click', function(e) {
 	let $target = $(e.target)
@@ -173,11 +181,7 @@ $('.advanced-search select').on('change', function() {
 $('.btn-search').on('click', function(e) {
 	if(advKey.length > 0) {
 		let data = $.extend(true, advanceData, baseData)
-		$.post(MATCH_URL, data, function(res) {
-			if(res.data){
-				makeCard(res.data)
-			}
-		})
+		sendQuery(data)
 		makePanel(advKey)
 	}
 	$('.advanced-search').hide()
@@ -201,23 +205,19 @@ $('.close-cover').on('click', function() {
 	$('.advanced-search').hide()
 })
 
-$('.adv-feature').on('click', '.clearIt', function(e) {
+$panel.on('click', '.clearIt', function(e) {
 	let key = $(e.target).data('key')
 	init(key)
 	delete advanceData[key]
 	advKey = _.without(advKey,key)
 	let data = $.extend(true, advanceData, baseData)
-	$.post(MATCH_URL, data, function(res) {
-		if(res.data){
-			makeCard(res.data)
-		}
-	})
+	sendQuery(data)
 	makePanel(advKey)
 })
 
 var init = function(key) {
 	let $sel = $('.tab-pane > div').filter(function() {
-		return $(this).data('key') == key;
+		return $(this).data('key') == key
 	})
 	let type = $sel.data('type')
 
@@ -261,3 +261,6 @@ vehicle.on('grooveSlider::reset', function(e, state, k) {
 	delete advanceData[k]
 	advKey = _.without(advKey,k)
 })
+
+renderSentence(baseData)
+sendQuery(baseData)
