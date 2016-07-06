@@ -16,19 +16,19 @@
         <div class="main-container">
             <div class="clearfix">
                 <form id="base-form">
-                    <strong>
-                        <i class="pop-switch">
-                            搜一下：男，
-                        </i>
-                        <span class="arrow-box pop-over">
-                            <h4>性别</h4>
-                            <div data-key="gender">
-                                <span class="choice-block base-choice" data-value="男">男</span>
-                                <span class="choice-block base-choice" data-value="女">女</span>
-                                <span class="choice-block base-choice" data-value="所有人">所有人</span>
-                            </div>
-                        </span>
-                    </strong>
+                    {{--<strong>--}}
+                        {{--<i class="pop-switch">--}}
+                            {{--搜一下：男，--}}
+                        {{--</i>--}}
+                        {{--<span class="arrow-box pop-over">--}}
+                            {{--<h4>性别</h4>--}}
+                            {{--<div data-key="gender">--}}
+                                {{--<span class="choice-block base-choice" data-value="男">男</span>--}}
+                                {{--<span class="choice-block base-choice" data-value="女">女</span>--}}
+                                {{--<span class="choice-block base-choice" data-value="所有人">所有人</span>--}}
+                            {{--</div>--}}
+                        {{--</span>--}}
+                    {{--</strong>--}}
                     {{--<strong>--}}
                         {{--<i class="pop-switch">--}}
                             {{--年龄25-35，--}}
@@ -44,30 +44,30 @@
                             {{--</label>--}}
                         {{--</span>--}}
                     {{--</strong>--}}
-                    <strong>
-                        <i class="pop-switch">
-                            对女性感兴趣，
-                        </i>
-                        <span class="arrow-box pop-over">
-                            <h4>性向</h4>
-                            <div data-key="target_gender">
-                                <span class="choice-block base-choice" data-value="男">男</span>
-                                <span class="choice-block base-choice" data-value="女">女</span>
-                                <span class="choice-block base-choice" data-value="所有人">所有人</span>
-                            </div>
-                        </span>
-                    </strong>
-                    <strong>
-                        <i class="pop-switch">
-                            坐标北京。
-                        </i>
-                        <span class="arrow-box pop-over">
-                            <h4>位于</h4>
-                            <div data-key="city">
-                                <input id="#city" type="text"/>
-                            </div>
-                        </span>
-                    </strong>
+                    {{--<strong>--}}
+                        {{--<i class="pop-switch">--}}
+                            {{--对女性感兴趣，--}}
+                        {{--</i>--}}
+                        {{--<span class="arrow-box pop-over">--}}
+                            {{--<h4>性向</h4>--}}
+                            {{--<div data-key="target_gender">--}}
+                                {{--<span class="choice-block base-choice" data-value="男">男</span>--}}
+                                {{--<span class="choice-block base-choice" data-value="女">女</span>--}}
+                                {{--<span class="choice-block base-choice" data-value="所有人">所有人</span>--}}
+                            {{--</div>--}}
+                        {{--</span>--}}
+                    {{--</strong>--}}
+                    {{--<strong>--}}
+                        {{--<i class="pop-switch">--}}
+                            {{--坐标北京。--}}
+                        {{--</i>--}}
+                        {{--<span class="arrow-box pop-over">--}}
+                            {{--<h4>位于</h4>--}}
+                            {{--<div data-key="city">--}}
+                                {{--<input id="#city" type="text"/>--}}
+                            {{--</div>--}}
+                        {{--</span>--}}
+                    {{--</strong>--}}
                 </form>
                 <i class="fa fa-sliders" aria-hidden="true"></i>
             </div>
@@ -197,6 +197,11 @@
 
 @section('scripts')
     @parent
+    <script>
+        window.__data = {
+            defaultBase: {!! json_encode($defaultBase) !!}
+        }
+    </script>
 
     <script src="/d/match/index.js"></script>
 
