@@ -15,7 +15,6 @@ class Detail extends Model
 		'user_id',
 		'orientation',
 		'status',
-		'nationality',
 		'height',
 		'weight',
 		'smoking',
@@ -28,7 +27,6 @@ class Detail extends Model
 	public static $itemText = [
 		'orientation'      => '取向',
 		'status'           => '状态',
-		'nationality'      => '民族',
 		'height'           => '身高',
 		'weight'           => '体重',
 		'smoking'          => '吸烟',

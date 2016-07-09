@@ -5,13 +5,24 @@
  * data-pattern:
  *   'number' - must be number
  *   ...
+ * range validator need the following dom structure:
+ * <div>
+ *    <input type="text" name="ageMin" data-required="1" data-pattern="range" data-role="min"/>
+ *    <span class="error-alert">请输入数字</span>
+ * </div>
+ *<div>
+ *    <input type="text" name="ageMax" data-required="1" data-pattern="range" data-role="max"/>
+ *    <span class="error-alert">请输入数字</span>
+ *</div>
+ *
  */
 export default class Validator {
 	constructor(form, option) {
 		this.$form = $(form)
 		this.option = option || {}
 		this.patterns = {
-			number: /^\-?(?:[1-9]\d*|0)(?:[.]\d)?$/
+			number: /^\-?(?:[1-9]\d*|0)(?:[.]\d)?$/,
+			range: /^\-?(?:[1-9]\d*|0)(?:[.]\d)?$/,
 		}
 		this.after = option.after || function() {
 			return true;
@@ -31,7 +42,11 @@ export default class Validator {
 			self.validate($(this))
 		})
 		this.$items.on('focusin', function(e) {
-			$(e.target).parent().removeClass('empty error')
+			let $target = $(e.target)
+			$target.parent().removeClass('empty error rangeError')
+			if($target.data('pattern') == 'range') {
+				$target.parent().siblings('.range').removeClass('rangeError')
+			}
 		})
 	}
 	captureItem() {
@@ -52,6 +67,18 @@ export default class Validator {
 			if(pattern && !pattern.test(text)) {
 				$parent.addClass('error')
 				return false
+			}
+		}
+		if($(item).data('pattern') == 'range') {
+			let value = parseFloat(text)
+			let role = $(item).data('role')
+			let $sibling = $(item).parent().siblings('.range').children('input[data-pattern="range"]')
+			if($sibling.val()) {
+				let sibVal = parseFloat($sibling.val())
+				if((role == 'min' && value >= sibVal) || (role == 'max' && value <= sibVal))  {
+					$parent.addClass('rangeError')
+					return false
+				}
 			}
 		}
 		return true
