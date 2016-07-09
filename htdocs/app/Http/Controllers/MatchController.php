@@ -30,7 +30,7 @@ class MatchController extends Controller {
 			'summary', 'routine', 'skills', 'favorite', 'necessities', 'concerns', 'friday'
 		],
 		'details' => [
-			'orientation', 'status', 'nationality', 'height', 'weight', 'smoking', 'drinking', 'religion', 'education', 'offspring', 'pet',
+			'orientation', 'status', 'height', 'weight', 'smoking', 'drinking', 'religion', 'education', 'offspring', 'pet',
 		],
 		'refers' => [
 			'why', 'description', 'story'

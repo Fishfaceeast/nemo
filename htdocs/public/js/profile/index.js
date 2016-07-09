@@ -54,16 +54,18 @@ $.each(model_config, function(key, option) {
 		}
 	})
 })
-$('.pseudo-checkbox').on('click', function(e) {
-	let isSelected = $(e.target).data('select') ? 0 : 1
-	$(e.target).toggleClass('active').data('select', isSelected)
-	let str = ''
-	$('.pseudo-checkbox').each(function(){
-		if($(this).data('select')) {
-			str += $(this).data('value') + " "
-		}
-	})
-	$('.pseudo-checkbox-container').children('input').val(str)
+
+$('.pseudo-radio').on('click', function(e) {
+	let $target = $(e.target)
+	let isSelected = $target.data('select') ? 0 : 1
+	if (isSelected) {
+		$target.addClass('active').siblings('.pseudo-radio').removeClass('active').data('select', 0)
+		$target.siblings('input').val($target.data('value'))
+	} else {
+		$target.removeClass('active')
+		$target.siblings('input').val('')
+	}
+	$target.data('select', isSelected)
 })
 const sync = (key, sel, data) => {
 	let str = ''

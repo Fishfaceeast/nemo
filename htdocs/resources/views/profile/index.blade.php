@@ -196,19 +196,23 @@
                             </div>
                             <div class="form-group">
                                 <label for="isSingle">一定要单身么</label>
-                                <input type="text" name="isSingle"/>
+                                <span class="pseudo-radio" data-value="是" data-select="0">是</span>
+                                <span class="pseudo-radio" data-value="否" data-select="0">否</span>
+                                <input type="hidden" name="isSingle" value=""/>
                             </div>
                             <div class="form-group">
                                 <label for="isNearBy">一定要同城么</label>
-                                <input type="text" name="isNearBy"/>
+                                <span class="pseudo-radio" data-value="是" data-select="0">是</span>
+                                <span class="pseudo-radio" data-value="否" data-select="0">否</span>
+                                <input type="hidden" name="isNearBy" value=""/>
                             </div>
                             <div class="form-group">
                                 <label>想建立</label>
-                                <div class="pseudo-checkbox-container">
-                                    <span class="pseudo-checkbox" data-value="新朋友" data-select="0">新朋友</span>
-                                    <span class="pseudo-checkbox" data-value="长期约会" data-select="0">长期约会</span>
-                                    <span class="pseudo-checkbox" data-value="短期约会" data-select="0">短期约会</span>
-                                    <span class="pseudo-checkbox" data-value="待定" data-select="0">待定</span>
+                                <div class="pseudo-radio-container">
+                                    <span class="pseudo-radio" data-value="新朋友" data-select="0">新朋友</span>
+                                    <span class="pseudo-radio" data-value="长期约会" data-select="0">长期约会</span>
+                                    <span class="pseudo-radio" data-value="短期约会" data-select="0">短期约会</span>
+                                    <span class="pseudo-radio" data-value="待定" data-select="0">待定</span>
                                     <input type="hidden" name="relationship" value=""/>
                                 </div>
                             </div>
