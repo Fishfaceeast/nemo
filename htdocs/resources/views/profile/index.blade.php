@@ -188,12 +188,16 @@
                                 <label for="ageMin">年龄</label>
                                 <br/>
                                 <div>
-                                    <input type="text" name="ageMin" data-required="1" data-pattern="number"/>
-                                    <span class="error-alert">请输入数字</span>
-                                </div>
-                                <div>
-                                    <input type="text" name="ageMax" data-required="1" data-pattern="number"/>
-                                    <span class="error-alert">请输入数字</span>
+                                    <div class="range">
+                                        <input type="text" name="ageMin" data-required="1" data-pattern="range" data-role="min"/>
+                                        <span class="error-alert">请输入数字</span>
+                                        <span class="range-alert">最小值无效</span>
+                                    </div>
+                                    <div class="range">
+                                        <input type="text" name="ageMax" data-required="1" data-pattern="range" data-role="max"/>
+                                        <span class="error-alert">请输入数字</span>
+                                        <span class="range-alert">最大值无效</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">

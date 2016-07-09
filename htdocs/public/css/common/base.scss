@@ -37,22 +37,24 @@ h4 {
 /*==== temp buffer for cosmo/index.scss =====*/
 
 /*====== END =======*/
-.empty-alert, .error-alert {
+.empty-alert, .error-alert, .range-alert {
 	display: none;
 	font-size: 13px;
 	color: #f44545;
 }
-.error, .empty {
+.error, .empty, .rangeError {
 	input, textarea {
 		border: 1px solid #f44545;
 		background-color: #feeeee;
 	}
 }
-.empty .empty-alert, .error .error-alert {
+.empty .empty-alert, .error .error-alert, .rangeError .range-alert {
 	display: inline-block;
 }
-.empty .error-alert {
-	display: none;
+.empty {
+	.error-alert, .range-alert {
+		display: none;
+	}
 }
 
 
