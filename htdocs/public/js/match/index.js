@@ -75,17 +75,19 @@ function isChoiceActive(key, value) {
 }
 
 var baseData = {}
-_.each(__data.defaultBase, function(obj, key) {
-	baseData[key] = obj.value
-})
-if(baseData['ageMin']) {
-	baseData['latestBirth'] = baseData['ageMin']
-	delete baseData['ageMin']
+const initBaseData = () => {
+	let dic = {
+		ageMin : 'latestBirth',
+		ageMax: 'earliestBirth',
+		target_gender: 'gender',
+		gender: 'target_gender',
+		city: 'city'
+	}
+	_.each(dic, function(neoKey, rawKey) {
+		baseData[neoKey] = __data.defaultBase[rawKey] ? __data.defaultBase[rawKey].value : '';
+	})
 }
-if(baseData['ageMax']) {
-	baseData['earliestBirth'] = baseData['ageMax']
-	delete baseData['ageMax']
-}
+initBaseData()
 
 var $baseForm = $('#base-form')
 var $board = $('.board')

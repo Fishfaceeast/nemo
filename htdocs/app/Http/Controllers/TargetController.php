@@ -12,8 +12,12 @@ class TargetController extends Controller {
 	 * Create or Update a new Target instance
 	 */
 	protected function update(Request $request) {
+		$fields = [];
+		foreach($request->all() as $key => $value) {
+			$fields[$key] = $value ? $value : null;
+		}
 		try {
-			Target::updateOrCreate(['user_id' => $request->user()->id], $request->all());
+			Target::updateOrCreate(['user_id' => $request->user()->id], $fields);
 			return response()->json('success');
 		} catch(Exception $e) {
 			return response()->json('error: ' .$e->getMessage());

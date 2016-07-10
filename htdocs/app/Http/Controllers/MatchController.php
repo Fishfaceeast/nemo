@@ -84,7 +84,13 @@ class MatchController extends Controller {
 	 */
 
 	protected function search(Request $request) {
-		$fields = $request->all();
+		// remove empty field
+		$fields = [];
+		foreach($request->all() as $key => $value) {
+			if($value) {
+				$fields[$key] = $value;
+			}
+		}
 		$groupFields = $this->groupFields($fields);
 		$users = $this->getUsers($groupFields);
 
