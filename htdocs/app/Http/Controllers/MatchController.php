@@ -24,7 +24,7 @@ class MatchController extends Controller {
 
 	protected $originMap = [
 		'basics' => [
-			'user_id', 'gender', 'city', 'birth_year'
+			'user_id', 'gender', 'city', 'birth_year',
 		],
 		'abouts' => [
 			'summary', 'routine', 'skills', 'favorite', 'necessities', 'concerns', 'friday'
@@ -41,7 +41,7 @@ class MatchController extends Controller {
 	];
 
 	protected $baseField = [
-		'gender', 'city', 'target_gender',
+		'gender', 'city', 'ageMin', 'ageMax', 'target_gender',
 	];
 
 	/**
@@ -74,13 +74,15 @@ class MatchController extends Controller {
 		]);
 	}
 
-//	$fields = [
-//		'gender'  => '男',
-//		'city'    => '北京',
-//		'smoking' => '有时',
-//		'drinking' => '否',
-//		'isSingle' => '1',
-//	]
+	/**
+	 * $fields = [
+	 * 'city'    => '北京',
+	 * 'gender'  => '男',
+	 * 'smoking' => '有时',
+	 * ...
+	 * ]
+	 */
+
 	protected function search(Request $request) {
 		$fields = $request->all();
 		$groupFields = $this->groupFields($fields);
@@ -92,13 +94,30 @@ class MatchController extends Controller {
 
 	private function groupFields($fields) {
 		$ret = [];
+		if(isset($fields['latestBirth']) || isset($fields['earliestBirth'])) {
+			$currentYear = date("Y");
+			$latestBirth = isset($fields['latestBirth']) ? ($currentYear - intval($fields['latestBirth'])) : $currentYear - 15;
+			$earliestBirth = isset($fields['earliestBirth']) ? ($currentYear - intval($fields['earliestBirth'])) : $currentYear - 100;
+			$ret['basics'] = [];
+			$ret['basics']['birth_year'] = ['birth_year', [$earliestBirth, $latestBirth]];
+		}
+		if(isset($fields['heightMin']) || isset($fields['heightMax'])) {
+			$heightMin = isset($fields['heightMin']) ? $fields['heightMin'] : 0;
+			$heightMax = isset($fields['heightMax']) ? $fields['heightMax'] : 300;
+			$ret['details'] = [];
+			$ret['details']['height'] = ['height', [$heightMin, $heightMax]];
+		}
+
+		$removeKeys = ['latestBirth', 'earliestBirth', 'heightMin', 'heightMax'];
+		$fields = array_diff_key($fields, array_flip($removeKeys));
+
 		foreach($fields as $key => $value) {
 			$dbName = $this->dbMap[$key];
 			if($dbName) {
 				if(!isset($ret[$dbName])) {
 					$ret[$dbName] = [];
 				}
-				$ret[$dbName][] = [$key, $value];
+				$ret[$dbName][$key] = [$key, $value];
 			}
 		}
 		return $ret;
@@ -125,6 +144,7 @@ class MatchController extends Controller {
 				'id' => [],
 				'data' => [],
 			];
+
 			$hits = $this->query($table, $groupField);
 
 			// 某个表的query无结果
@@ -169,13 +189,50 @@ class MatchController extends Controller {
 		return $ret;
 	}
 
+	// TODO abstract
 	private function query($table, $fields) {
+		$qr1 = [];
+		$qr2 = [];
+		if($table == 'basics' && in_array('birth_year', array_keys($fields))) {
+			$r1 = $this->betweenQuery($table, 'birth_year', $fields['birth_year'][1]);
+			foreach ($r1 as $hit) {
+				$qr1[$hit->user_id] = $hit;
+			}
+			unset($fields['birth_year']);
+			$r2 = $this->baseQuery($table, array_values($fields));
+			foreach ($r2 as $hit) {
+				$qr2[$hit->user_id] = $hit;
+			}
+			$qr = array_intersect_key($qr1, $qr2);
+		} else if ($table == 'details' && in_array('height', array_keys($fields))) {
+			$r1 = $this->betweenQuery($table, 'height', $fields['height'][1]);
+			foreach ($r1 as $hit) {
+				$qr1[$hit->user_id] = $hit;
+			}
+			unset($fields['height']);
+			$r2 = $this->baseQuery($table, array_values($fields));
+			foreach ($r2 as $hit) {
+				$qr2[$hit->user_id] = $hit;
+			}
+			$qr = array_intersect_key($qr1, $qr2);
+		} else {
+			$qr = $this->baseQuery($table, array_values($fields));
+		}
+
+		return $qr;
+	}
+	private function baseQuery($table, $fields) {
 		$qr = DB::table($table)->where($fields)->get();
 		return $qr;
 	}
 
 	private function inQuery($table, $key, $arr) {
 		$qr = DB::table($table)->whereIn($key, $arr)->get();
+		return $qr;
+	}
+
+	private function betweenQuery($table, $key, $arr) {
+		$qr = DB::table($table)->whereBetween($key, $arr)->get();
 		return $qr;
 	}
 }
