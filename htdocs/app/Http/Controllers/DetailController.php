@@ -15,8 +15,12 @@ class DetailController extends Controller
 	 * @return Detail
 	 */
 	protected function update(Request $request) {
+		$fields = [];
+		foreach($request->all() as $key => $value) {
+			$fields[$key] = $value ? $value : null;
+		}
 		try {
-			Detail::updateOrCreate(['user_id' => $request->user()->id], $request->all());
+			Detail::updateOrCreate(['user_id' => $request->user()->id], $fields);
 			return response()->json('success');
 		} catch(Exception $e) {
 			return response()->json('error: ' .$e->getMessage());

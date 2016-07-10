@@ -17,13 +17,6 @@ const sliderDataMap = {
 	}
 }
 
-var defaultBase = __data.defaultBase
-var baseData = {
-	gender: defaultBase["target_gender"].value,
-	target_gender: defaultBase["gender"].value,
-	city: defaultBase["city"].value
-}
-
 var baseTemplate = data => `
 	<strong>
 		<i class="pop-switch">
@@ -35,6 +28,21 @@ var baseTemplate = data => `
 				<span class="choice-block base-choice ${isChoiceActive('gender', '男')}" data-value="男">男</span>
 				<span class="choice-block base-choice ${isChoiceActive('gender', '女')}" data-value="女">女</span>
 			</div>
+		</span>
+	</strong>
+	<strong>
+		<i class="pop-switch">
+			年龄${data["latestBirth"]}-${data["earliestBirth"]}，
+		</i>
+		<span class="arrow-box pop-over">
+			<h4>年龄</h4>
+			<label data-key="latestBirth">
+				<input type="text" value="${data["latestBirth"]}"/>
+			</label>
+			<span> - </span>
+			<label data-key="earliestBirth">
+				<input type="text" value="${data["earliestBirth"]}"/>
+			</label>
 		</span>
 	</strong>
 	<strong>
@@ -65,6 +73,21 @@ var baseTemplate = data => `
 function isChoiceActive(key, value) {
 	return value == baseData[key] ? 'active' : ''
 }
+
+var baseData = {}
+const initBaseData = () => {
+	let dic = {
+		ageMin : 'latestBirth',
+		ageMax: 'earliestBirth',
+		target_gender: 'gender',
+		gender: 'target_gender',
+		city: 'city'
+	}
+	_.each(dic, function(neoKey, rawKey) {
+		baseData[neoKey] = __data.defaultBase[rawKey] ? __data.defaultBase[rawKey].value : '';
+	})
+}
+initBaseData()
 
 var $baseForm = $('#base-form')
 var $board = $('.board')
@@ -160,6 +183,7 @@ $('.adv-choice').on('click', function(e) {
 	} else {
 		advKey.push(k)
 		advanceData[k] = val
+		$target.siblings('.adv-choice').removeClass('active')
 	}
 	$target.toggleClass('active')
 

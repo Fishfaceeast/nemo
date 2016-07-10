@@ -29,21 +29,21 @@
                             {{--</div>--}}
                         {{--</span>--}}
                     {{--</strong>--}}
-                    {{--<strong>--}}
-                        {{--<i class="pop-switch">--}}
-                            {{--年龄25-35，--}}
-                        {{--</i>--}}
-                        {{--<span class="arrow-box pop-over">--}}
-                            {{--<h4>年龄</h4>--}}
-                            {{--<label>--}}
-                                {{--<input type="text" name="ageMin" value="24"/>--}}
-                            {{--</label>--}}
-                            {{--<span> - </span>--}}
-                            {{--<label>--}}
-                                {{--<input type="text" name="ageMax" value="50"/>--}}
-                            {{--</label>--}}
-                        {{--</span>--}}
-                    {{--</strong>--}}
+                    <strong>
+                        <i class="pop-switch">
+                            年龄25-35，
+                        </i>
+                        <span class="arrow-box pop-over">
+                            <h4>年龄</h4>
+                            <label>
+                                <input type="text" name="ageMin" value="24"/>
+                            </label>
+                            <span> - </span>
+                            <label>
+                                <input type="text" name="ageMax" value="50"/>
+                            </label>
+                        </span>
+                    </strong>
                     {{--<strong>--}}
                         {{--<i class="pop-switch">--}}
                             {{--对女性感兴趣，--}}
