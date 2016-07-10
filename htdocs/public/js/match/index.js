@@ -86,7 +86,6 @@ if(baseData['ageMax']) {
 	baseData['earliestBirth'] = baseData['ageMax']
 	delete baseData['ageMax']
 }
-console.log(baseData)
 
 var $baseForm = $('#base-form')
 var $board = $('.board')
@@ -182,6 +181,7 @@ $('.adv-choice').on('click', function(e) {
 	} else {
 		advKey.push(k)
 		advanceData[k] = val
+		$target.siblings('.adv-choice').removeClass('active')
 	}
 	$target.toggleClass('active')
 
