@@ -50,19 +50,16 @@
                         <span class="choice-block adv-choice" data-value="长期约会">长期约会</span>
                         <span class="choice-block adv-choice" data-value="短期约会">短期约会</span>
                         <span class="choice-block adv-choice" data-value="待定">待定</span>
-                        <input type="hidden" data-key="relationship" data-value=""/>
                     </div>
                     <div data-key="offspring" data-type="radio">
                         <p class="feature-title">娃</p>
                         <span class="choice-block adv-choice" data-value="有">有</span>
                         <span class="choice-block adv-choice" data-value="无">没有</span>
-                        <input type="hidden" data-key="offspring" data-value=""/>
                     </div>
                     <div data-key="pet" data-type="radio">
                         <p class="feature-title">宠物</p>
                         <span class="choice-block adv-choice" data-value="有">有</span>
                         <span class="choice-block adv-choice" data-value="无">没有</span>
-                        <input type="hidden" data-key="pet" data-value=""/>
                     </div>
                     <button type="button" class="btn btn-primary btn-search">搜索</button>
                     <button type="button" class="btn btn-secondary btn-cancel">取消</button>
@@ -89,8 +86,6 @@
                             <option value="180">180</option>
                             <option value="180">185</option>
                         </select>
-                        <input type="hidden" data-key="heightMin" data-value=""/>
-                        <input type="hidden" data-key="heightMax" data-value=""/>
                     </div>
                     <div data-key="weight" data-type="select">
                         <p class="feature-title">体重</p>
