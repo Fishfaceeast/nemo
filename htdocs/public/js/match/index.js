@@ -186,7 +186,6 @@ $('.adv-choice').on('click', function(e) {
 		$target.siblings('.adv-choice').removeClass('active')
 	}
 	$target.toggleClass('active')
-
 })
 
 $('.advanced-search select').on('change', function() {
@@ -203,11 +202,9 @@ $('.advanced-search select').on('change', function() {
 })
 
 $('.btn-search').on('click', function(e) {
-	if(advKey.length > 0) {
-		let data = $.extend(true, advanceData, baseData)
-		sendQuery(data)
-		makePanel(advKey)
-	}
+	let data = $.extend(true, advanceData, baseData)
+	sendQuery(data)
+	makePanel(advKey)
 	$('.advanced-search').hide()
 	$cover.hide()
 	$('.fa-sliders').show()
