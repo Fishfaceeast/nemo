@@ -1,4 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.common')
+
+@section('styles')
+    @parent
+    <link rel="stylesheet" href="/d/auth/index.css">
+
+@endsection
 
 @section('content')
     <div class="container">
@@ -63,6 +69,56 @@
                                         <strong>{{ $errors->first('password_confirmation') }}</strong>
                                     </span>
                                     @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">性别</label>
+
+                                <div class="col-md-6">
+                                    <div class="form-control">
+                                        <input type="radio" name="gender" value="男" checked/> 男
+                                        <input type="radio" name="gender" value="女"/> 女
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">城市</label>
+
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="city" value="{{ old('city') }}">
+
+                                    @if ($errors->has('city'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('city') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('birth_year') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">出生年</label>
+
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="birth_year" value="{{ old('birth_year') }}">
+
+                                    @if ($errors->has('birth_year'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('birth_year') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('target_gender') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">寻找</label>
+
+                                <div class="col-md-6">
+                                    <div class="form-control">
+                                        <input type="radio" name="target_gender" value="男"/> 男
+                                        <input type="radio" name="target_gender" value="女" checked/> 女
+                                    </div>
                                 </div>
                             </div>
 
