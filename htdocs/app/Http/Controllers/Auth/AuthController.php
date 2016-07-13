@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Basic;
+use App\Target;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -49,9 +51,13 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|unique:users',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+			'gender' => 'required|max:4',
+			'city' => 'required|max:20',
+			'birth_year' => 'required|max:4',
+			'target_gender' => 'required|max:4',
         ]);
     }
 
@@ -63,10 +69,22 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+		$user = User::create([
+			'name' => $data['name'],
+			'email' => $data['email'],
+			'password' => bcrypt($data['password']),
+		]);
+		Basic::create([
+			'user_id' => $user->id,
+			'gender' => $data['gender'],
+			'city' => $data['city'],
+			'birth_year' => $data['birth_year'],
+		]);
+		Target::create([
+			'user_id' => $user->id,
+			'target_gender' => $data['target_gender'],
+		]);
+
+        return $user;
     }
 }

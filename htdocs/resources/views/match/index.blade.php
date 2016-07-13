@@ -15,60 +15,7 @@
         </div>
         <div class="main-container">
             <div class="clearfix">
-                <form id="base-form">
-                    {{--<strong>--}}
-                        {{--<i class="pop-switch">--}}
-                            {{--搜一下：男，--}}
-                        {{--</i>--}}
-                        {{--<span class="arrow-box pop-over">--}}
-                            {{--<h4>性别</h4>--}}
-                            {{--<div data-key="gender">--}}
-                                {{--<span class="choice-block base-choice" data-value="男">男</span>--}}
-                                {{--<span class="choice-block base-choice" data-value="女">女</span>--}}
-                                {{--<span class="choice-block base-choice" data-value="所有人">所有人</span>--}}
-                            {{--</div>--}}
-                        {{--</span>--}}
-                    {{--</strong>--}}
-                    <strong>
-                        <i class="pop-switch">
-                            年龄25-35，
-                        </i>
-                        <span class="arrow-box pop-over">
-                            <h4>年龄</h4>
-                            <label>
-                                <input type="text" name="ageMin" value="24"/>
-                            </label>
-                            <span> - </span>
-                            <label>
-                                <input type="text" name="ageMax" value="50"/>
-                            </label>
-                        </span>
-                    </strong>
-                    {{--<strong>--}}
-                        {{--<i class="pop-switch">--}}
-                            {{--对女性感兴趣，--}}
-                        {{--</i>--}}
-                        {{--<span class="arrow-box pop-over">--}}
-                            {{--<h4>性向</h4>--}}
-                            {{--<div data-key="target_gender">--}}
-                                {{--<span class="choice-block base-choice" data-value="男">男</span>--}}
-                                {{--<span class="choice-block base-choice" data-value="女">女</span>--}}
-                                {{--<span class="choice-block base-choice" data-value="所有人">所有人</span>--}}
-                            {{--</div>--}}
-                        {{--</span>--}}
-                    {{--</strong>--}}
-                    {{--<strong>--}}
-                        {{--<i class="pop-switch">--}}
-                            {{--坐标北京。--}}
-                        {{--</i>--}}
-                        {{--<span class="arrow-box pop-over">--}}
-                            {{--<h4>位于</h4>--}}
-                            {{--<div data-key="city">--}}
-                                {{--<input id="#city" type="text"/>--}}
-                            {{--</div>--}}
-                        {{--</span>--}}
-                    {{--</strong>--}}
-                </form>
+                <form id="base-form"></form>
                 <i class="fa fa-sliders" aria-hidden="true"></i>
             </div>
             <div class="adv-feature"></div>
@@ -96,8 +43,6 @@
                     <div data-key="status" data-type="radio">
                         <p class="feature-title">情感状态</p>
                         <span class="choice-block adv-choice" data-value="单身">单身</span>
-                        <span class="choice-block adv-choice" data-value="非单身">非单身</span>
-                        <input type="hidden" data-key="status" data-value=""/>
                     </div>
                     <div data-key="relationship" data-type="radio">
                         <p class="feature-title">他寻找怎样的关系</p>
@@ -105,19 +50,16 @@
                         <span class="choice-block adv-choice" data-value="长期约会">长期约会</span>
                         <span class="choice-block adv-choice" data-value="短期约会">短期约会</span>
                         <span class="choice-block adv-choice" data-value="待定">待定</span>
-                        <input type="hidden" data-key="relationship" data-value=""/>
                     </div>
                     <div data-key="offspring" data-type="radio">
                         <p class="feature-title">娃</p>
                         <span class="choice-block adv-choice" data-value="有">有</span>
                         <span class="choice-block adv-choice" data-value="无">没有</span>
-                        <input type="hidden" data-key="offspring" data-value=""/>
                     </div>
                     <div data-key="pet" data-type="radio">
                         <p class="feature-title">宠物</p>
                         <span class="choice-block adv-choice" data-value="有">有</span>
                         <span class="choice-block adv-choice" data-value="无">没有</span>
-                        <input type="hidden" data-key="pet" data-value=""/>
                     </div>
                     <button type="button" class="btn btn-primary btn-search">搜索</button>
                     <button type="button" class="btn btn-secondary btn-cancel">取消</button>
@@ -144,8 +86,6 @@
                             <option value="180">180</option>
                             <option value="180">185</option>
                         </select>
-                        <input type="hidden" data-key="heightMin" data-value=""/>
-                        <input type="hidden" data-key="heightMax" data-value=""/>
                     </div>
                     <div data-key="weight" data-type="select">
                         <p class="feature-title">体重</p>
