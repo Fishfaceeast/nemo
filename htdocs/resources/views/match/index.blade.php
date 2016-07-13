@@ -15,60 +15,7 @@
         </div>
         <div class="main-container">
             <div class="clearfix">
-                <form id="base-form">
-                    {{--<strong>--}}
-                        {{--<i class="pop-switch">--}}
-                            {{--搜一下：男，--}}
-                        {{--</i>--}}
-                        {{--<span class="arrow-box pop-over">--}}
-                            {{--<h4>性别</h4>--}}
-                            {{--<div data-key="gender">--}}
-                                {{--<span class="choice-block base-choice" data-value="男">男</span>--}}
-                                {{--<span class="choice-block base-choice" data-value="女">女</span>--}}
-                                {{--<span class="choice-block base-choice" data-value="所有人">所有人</span>--}}
-                            {{--</div>--}}
-                        {{--</span>--}}
-                    {{--</strong>--}}
-                    <strong>
-                        <i class="pop-switch">
-                            年龄25-35，
-                        </i>
-                        <span class="arrow-box pop-over">
-                            <h4>年龄</h4>
-                            <label>
-                                <input type="text" name="ageMin" value="24"/>
-                            </label>
-                            <span> - </span>
-                            <label>
-                                <input type="text" name="ageMax" value="50"/>
-                            </label>
-                        </span>
-                    </strong>
-                    {{--<strong>--}}
-                        {{--<i class="pop-switch">--}}
-                            {{--对女性感兴趣，--}}
-                        {{--</i>--}}
-                        {{--<span class="arrow-box pop-over">--}}
-                            {{--<h4>性向</h4>--}}
-                            {{--<div data-key="target_gender">--}}
-                                {{--<span class="choice-block base-choice" data-value="男">男</span>--}}
-                                {{--<span class="choice-block base-choice" data-value="女">女</span>--}}
-                                {{--<span class="choice-block base-choice" data-value="所有人">所有人</span>--}}
-                            {{--</div>--}}
-                        {{--</span>--}}
-                    {{--</strong>--}}
-                    {{--<strong>--}}
-                        {{--<i class="pop-switch">--}}
-                            {{--坐标北京。--}}
-                        {{--</i>--}}
-                        {{--<span class="arrow-box pop-over">--}}
-                            {{--<h4>位于</h4>--}}
-                            {{--<div data-key="city">--}}
-                                {{--<input id="#city" type="text"/>--}}
-                            {{--</div>--}}
-                        {{--</span>--}}
-                    {{--</strong>--}}
-                </form>
+                <form id="base-form"></form>
                 <i class="fa fa-sliders" aria-hidden="true"></i>
             </div>
             <div class="adv-feature"></div>
@@ -96,8 +43,6 @@
                     <div data-key="status" data-type="radio">
                         <p class="feature-title">情感状态</p>
                         <span class="choice-block adv-choice" data-value="单身">单身</span>
-                        <span class="choice-block adv-choice" data-value="非单身">非单身</span>
-                        <input type="hidden" data-key="status" data-value=""/>
                     </div>
                     <div data-key="relationship" data-type="radio">
                         <p class="feature-title">他寻找怎样的关系</p>
