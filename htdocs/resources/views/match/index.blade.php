@@ -61,8 +61,10 @@
                         <span class="choice-block adv-choice" data-value="有">有</span>
                         <span class="choice-block adv-choice" data-value="无">没有</span>
                     </div>
-                    <button type="button" class="btn btn-primary btn-search">搜索</button>
-                    <button type="button" class="btn btn-secondary btn-cancel">取消</button>
+                    <div class="btn-wrapper">
+                        <button type="button" class="btn btn-primary btn-search">搜索</button>
+                        <button type="button" class="btn btn-secondary btn-cancel">取消</button>
+                    </div>
                 </div>
                 <div class="tab-pane clearfix" id="look" role="tabpanel">
                     <div data-key="height" data-type="select">

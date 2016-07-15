@@ -18,7 +18,7 @@
         @section('header')
             <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
                 <!-- Left Side Of Navbar -->
-                <a class="navbar-brand" href="#">YouI</a>
+                <a class="navbar-brand" href="{{ url('/home') }}">YouI</a>
                 <ul class="nav navbar-nav">
                     <li class="nav-item active"><a class="nav-link" href="{{ url('/home') }}">首页</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">搜搜</a></li>
