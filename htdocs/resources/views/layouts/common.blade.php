@@ -48,14 +48,26 @@
         @yield('content')
 
         @section('footer')
-            <footer class="clearfix">
-                <nav class="nav nav-inline pull-xs-left ">
-                    <a class="nav-link" href="#">关于我们</a>
-                    <a class="nav-link" href="#">职业生涯</a>
-                    <a class="nav-link" href="#">法律声明</a>
-                    <a class="nav-link" href="#">站内统计</a>
-                    <a class="nav-link" href="#">移动版</a>
-                </nav>
+            <footer>
+                <div class="main-container">
+                    <nav class="nav nav-inline pull-xs-left ">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">关于我们</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">职业生涯</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">法律声明</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">站内统计</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">移动版</a>
+                        </li>
+                    </nav>
+                </div>
             </footer>
         @show
 

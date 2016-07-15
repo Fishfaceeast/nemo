@@ -1,12 +1,9 @@
 @import 'groove-slider';
 
-body {
-	font-size: 16px;
-	div.section-container {
-		margin-top: 54px;
-		background-color: #104da1;
-		position: relative;
-	}
+div.section-container {
+	margin-top: 54px;
+	background-color: #104da1;
+	position: relative;
 }
 .nav-tabs .nav-item + .nav-item {
 	margin-left: 0;
@@ -17,6 +14,7 @@ body {
 .board {
 	width: 960px;
 	margin: 0 auto;
+	min-height: 600px;
 }
 .base-search {
 	background-color: #16a086;
@@ -135,6 +133,9 @@ span.arrow-box {
 .advanced-search {
 	background-color: #1bbc9b;
 	color: #fff;
+	.main-container {
+		margin-top: 20px;
+	}
 	.tab-pane {
 		text-align: center;
 		padding: 30px 0;
@@ -143,6 +144,9 @@ span.arrow-box {
 			float: left;
 			p {
 				font-size: 18px;
+				&.reset {
+					font-size: 14px;
+				}
 			}
 		}
 		button {
@@ -154,15 +158,35 @@ span.arrow-box {
 			width: auto;
 		}
 		.choice-block {
-			border-radius: 4px;
+			background-color: #a0d5c5;
+			border-radius: 3px;
 			cursor: pointer;
 			display: inline-block;
 			min-width: 72px;
 			height: 30px;
 			line-height: 30px;
+			&:hover {
+				background-color: #bde1d6;
+			}
 			&.active {
-				border: 1px solid #fff;
-				color: #fff;
+				color: #16a086;
+				background-color: #fff;
+				&:hover {
+					background-color: #d7ece5;
+				}
+			}
+		}
+		&#status {
+			> div:nth-child(1) {
+				width: 200px;
+			}
+			> div:nth-child(2) {
+				width: 400px;
+			}
+		}
+		&#vice {
+			> div:nth-child(1) {
+				padding-left: 10px;
 			}
 		}
 	}
