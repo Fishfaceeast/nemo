@@ -37,38 +37,19 @@
             </div>
         </div>
         <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
+        <ul class="nav nav-tabs nav-tabs-profile" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#about" role="tab">关于我</a>
+                <a class="nav-link active" data-toggle="tab" href="#refer" role="tab">朋友说</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#refer" role="tab">朋友说</a>
+                <a class="nav-link" data-toggle="tab" href="#about" role="tab">关于我</a>
             </li>
         </ul>
         <!-- Tab panes -->
         <div class="tab-content">
-            <!-- About -->
-            <div class="tab-pane active info-wrapper about-info-wrapper" id="about" role="tabpanel">
-                @if (count($about) > 0)
-                    @foreach ($about as $item)
-                        <div class="about-info">
-                            <h5>
-                                {{ $item['cname'] }}:
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                            </h5>
-                            <p>{{ $item['value'] or '——' }}</p>
-                            <fieldset class="form-group">
-                                <textarea class="form-control" id="{{ $item['name'] }}" rows="3"></textarea>
-                                <button type="button" class="btn btn-primary about-modify" name="about">保存设置</button>
-                                <button type="button" class="btn btn-secondary about-cancel" data-dismiss="modal">关闭</button>
-                            </fieldset>
-                        </div>
-                    @endforeach
-                @endif
-            </div>
             <!-- Refers -->
             @if (count($refers) > 0)
-                <div class="tab-pane info-wrapper refer-info-wrapper" id="refer" role="tabpanel">
+                <div class="tab-pane active info-wrapper refer-info-wrapper" id="refer" role="tabpanel">
                     @foreach ($refers as $refer)
                         <div class="refer-info">
                             <h5>推荐原因:
@@ -106,6 +87,25 @@
                     @endforeach
                 </div>
             @endif
+            <!-- About -->
+            <div class="tab-pane info-wrapper about-info-wrapper" id="about" role="tabpanel">
+                @if (count($about) > 0)
+                    @foreach ($about as $item)
+                        <div class="about-info">
+                            <h5>
+                                {{ $item['cname'] }}:
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </h5>
+                            <p>{{ $item['value'] or '——' }}</p>
+                            <fieldset class="form-group">
+                                <textarea class="form-control" id="{{ $item['name'] }}" rows="3"></textarea>
+                                <button type="button" class="btn btn-primary about-modify" name="about">保存设置</button>
+                                <button type="button" class="btn btn-secondary about-cancel" data-dismiss="modal">关闭</button>
+                            </fieldset>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
         </div>
 
         <!-- Current Details -->
@@ -185,32 +185,38 @@
                                     <span class="pseudo-radio" data-value="女" data-select="0">女</span>
                                     <input type="hidden" name="target_gender" value=""/>
                                 </div>
-                                <label for="ageMin">年龄</label>
-                                <br/>
-                                <div>
-                                    <div class="range">
-                                        <input type="text" name="ageMin" data-required="1" data-pattern="range" data-role="min"/>
-                                        <span class="error-alert">请输入数字</span>
-                                        <span class="range-alert">最小值无效</span>
-                                    </div>
-                                    <div class="range">
-                                        <input type="text" name="ageMax" data-required="1" data-pattern="range" data-role="max"/>
-                                        <span class="error-alert">请输入数字</span>
-                                        <span class="range-alert">最大值无效</span>
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="ageMin">最小年龄</label>
+                                <div class="range">
+                                    <input type="text" name="ageMin" data-required="1" data-pattern="range" data-role="min"/>
+                                    <span class="error-alert">请输入数字</span>
+                                    <span class="range-alert">最小值无效</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="ageMin">最大年龄</label>
+                                <div class="range">
+                                    <input type="text" name="ageMax" data-required="1" data-pattern="range" data-role="max"/>
+                                    <span class="error-alert">请输入数字</span>
+                                    <span class="range-alert">最大值无效</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="isSingle">一定要单身么</label>
-                                <span class="pseudo-radio" data-value="是" data-select="0">是</span>
-                                <span class="pseudo-radio" data-value="否" data-select="0">否</span>
-                                <input type="hidden" name="isSingle" value=""/>
+                                <div>
+                                    <span class="pseudo-radio" data-value="是" data-select="0">是</span>
+                                    <span class="pseudo-radio" data-value="否" data-select="0">否</span>
+                                    <input type="hidden" name="isSingle" value=""/>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="isNearBy">一定要同城么</label>
-                                <span class="pseudo-radio" data-value="是" data-select="0">是</span>
-                                <span class="pseudo-radio" data-value="否" data-select="0">否</span>
-                                <input type="hidden" name="isNearBy" value=""/>
+                                <div>
+                                    <span class="pseudo-radio" data-value="是" data-select="0">是</span>
+                                    <span class="pseudo-radio" data-value="否" data-select="0">否</span>
+                                    <input type="hidden" name="isNearBy" value=""/>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>想建立</label>
@@ -245,10 +251,12 @@
                         <form id="detailForm">
                             <div class="form-group">
                                 <label for="orientation">取向</label>
-                                <span class="pseudo-radio" data-value="直" data-select="0">直</span>
-                                <span class="pseudo-radio" data-value="弯" data-select="0">弯</span>
-                                <span class="pseudo-radio" data-value="双" data-select="0">双</span>
-                                <input type="hidden" name="orientation" value=""/>
+                                <div>
+                                    <span class="pseudo-radio" data-value="直" data-select="0">直</span>
+                                    <span class="pseudo-radio" data-value="弯" data-select="0">弯</span>
+                                    <span class="pseudo-radio" data-value="双" data-select="0">双</span>
+                                    <input type="hidden" name="orientation" value=""/>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="status">情感状态</label>
@@ -261,8 +269,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="height">身高</label>
-                                <input type="text" name="height" data-required="1" data-must="" data-pattern="number"/>
-                                <span class="error-alert">请输入数字</span>
+                                <div>
+                                    <input type="text" name="height" data-required="1" data-must="" data-pattern="number"/>
+                                    <span class="error-alert">请输入数字</span>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="weight">体重</label>
@@ -278,42 +288,54 @@
                             </div>
                             <div class="form-group">
                                 <label for="smoking">吸烟</label>
-                                <span class="pseudo-radio" data-value="否" data-select="0">否</span>
-                                <span class="pseudo-radio" data-value="有时" data-select="0">有时</span>
-                                <span class="pseudo-radio" data-value="是" data-select="0">是</span>
-                                <input type="hidden" name="smoking" value=""/>
+                                <div>
+                                    <span class="pseudo-radio" data-value="否" data-select="0">否</span>
+                                    <span class="pseudo-radio" data-value="有时" data-select="0">有时</span>
+                                    <span class="pseudo-radio" data-value="是" data-select="0">是</span>
+                                    <input type="hidden" name="smoking" value=""/>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="drinking">饮酒</label>
-                                <span class="pseudo-radio" data-value="否" data-select="0">否</span>
-                                <span class="pseudo-radio" data-value="社交场合" data-select="0">社交场合</span>
-                                <span class="pseudo-radio" data-value="是" data-select="0">是</span>
-                                <input type="hidden" name="drinking" value=""/>
+                                <div>
+                                    <span class="pseudo-radio" data-value="否" data-select="0">否</span>
+                                    <span class="pseudo-radio" data-value="社交场合" data-select="0">社交场合</span>
+                                    <span class="pseudo-radio" data-value="是" data-select="0">是</span>
+                                    <input type="hidden" name="drinking" value=""/>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="religion">宗教信仰</label>
-                                <span class="pseudo-radio" data-value="有" data-select="0">有</span>
-                                <span class="pseudo-radio" data-value="无" data-select="0">无</span>
-                                <input type="hidden" name="religion" value=""/>
+                                <div>
+                                    <span class="pseudo-radio" data-value="有" data-select="0">有</span>
+                                    <span class="pseudo-radio" data-value="无" data-select="0">无</span>
+                                    <input type="hidden" name="religion" value=""/>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="education">教育</label>
-                                <span class="pseudo-radio" data-value="高中" data-select="0">高中</span>
-                                <span class="pseudo-radio" data-value="本科" data-select="0">本科</span>
-                                <span class="pseudo-radio" data-value="研究生" data-select="0">研究生</span>
-                                <input type="hidden" name="education" value=""/>
+                                <div>
+                                    <span class="pseudo-radio" data-value="高中" data-select="0">高中</span>
+                                    <span class="pseudo-radio" data-value="本科" data-select="0">本科</span>
+                                    <span class="pseudo-radio" data-value="研究生" data-select="0">研究生</span>
+                                    <input type="hidden" name="education" value=""/>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="offspring">娃</label>
-                                <span class="pseudo-radio" data-value="有" data-select="0">有</span>
-                                <span class="pseudo-radio" data-value="无" data-select="0">无</span>
-                                <input type="hidden" name="offspring" value=""/>
+                                <div>
+                                    <span class="pseudo-radio" data-value="有" data-select="0">有</span>
+                                    <span class="pseudo-radio" data-value="无" data-select="0">无</span>
+                                    <input type="hidden" name="offspring" value=""/>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="pet">宠物</label>
-                                <span class="pseudo-radio" data-value="有" data-select="0">有</span>
-                                <span class="pseudo-radio" data-value="无" data-select="0">无</span>
-                                <input type="hidden" name="pet" value=""/>
+                                <div>
+                                    <span class="pseudo-radio" data-value="有" data-select="0">有</span>
+                                    <span class="pseudo-radio" data-value="无" data-select="0">无</span>
+                                    <input type="hidden" name="pet" value=""/>
+                                </div>
                             </div>
                         </form>
                     </div>
