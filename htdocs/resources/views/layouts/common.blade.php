@@ -20,9 +20,8 @@
                 <!-- Left Side Of Navbar -->
                 <a class="navbar-brand" href="{{ url('/home') }}">YouI</a>
                 <ul class="nav navbar-nav">
-                    <li class="nav-item active"><a class="nav-link" href="{{ url('/home') }}">首页</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">搜搜</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">升级</a></li>
+                    <li class="nav-item{{ $location == 'match' ? ' active' : '' }}"><a class="nav-link" href="{{ url('/match') }}">搜索</a></li>
+                    <li class="nav-item{{ $location == 'profile' ? ' active' : '' }}"><a class="nav-link" href="{{ url('/profile') }}">个人资料</a></li>
                 </ul>
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav pull-xs-right">
