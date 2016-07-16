@@ -28,8 +28,8 @@
                 <ul class="nav navbar-nav pull-xs-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li class="nav-item"><a class="nav-link" href="{{ url('/login') }}">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url('/register') }}">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/login') }}">登录</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/register') }}">注册</a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" id="dropdownMenu2" class="dropdown-toggle" data-toggle="dropdown" data-target="#" aria-haspopup="true" aria-expanded="false">
