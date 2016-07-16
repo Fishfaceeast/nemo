@@ -181,7 +181,9 @@ $('.adv-choice').on('click', function(e) {
 		advKey = _.without(advKey,k)
 		delete advanceData[k]
 	} else {
-		advKey.push(k)
+		if(_.indexOf(advKey, k) == -1 ) {
+			advKey.push(k)
+		}
 		advanceData[k] = val
 		$target.siblings('.adv-choice').removeClass('active')
 	}

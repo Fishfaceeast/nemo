@@ -71,6 +71,7 @@ class MatchController extends Controller {
 		}
 		return view('match.index', [
 			'defaultBase' => $defaultBaseData,
+			'location' => 'match',
 		]);
 	}
 

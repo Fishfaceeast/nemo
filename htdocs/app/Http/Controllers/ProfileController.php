@@ -68,6 +68,7 @@ class ProfileController extends Controller {
 			'about' => $this->about->forUser($request->user()),
 			'target' => $this->target->forUser($request->user()),
 			'refers' => $this->refers->forUser($request->user()),
+			'location' => 'profile',
 		]);
 	}
 }
