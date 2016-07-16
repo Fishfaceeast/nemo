@@ -183,7 +183,7 @@
                                 <div>
                                     <span class="pseudo-radio active" data-value="男" data-select="0">男</span>
                                     <span class="pseudo-radio" data-value="女" data-select="0">女</span>
-                                    <input type="hidden" name="target_gender" value=""/>
+                                    <input type="hidden" name="target_gender" value="男"/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -207,7 +207,7 @@
                                 <div>
                                     <span class="pseudo-radio active" data-value="是" data-select="0">是</span>
                                     <span class="pseudo-radio" data-value="否" data-select="0">否</span>
-                                    <input type="hidden" name="isSingle" value=""/>
+                                    <input type="hidden" name="isSingle" value="是"/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -215,7 +215,7 @@
                                 <div>
                                     <span class="pseudo-radio active" data-value="是" data-select="0">是</span>
                                     <span class="pseudo-radio" data-value="否" data-select="0">否</span>
-                                    <input type="hidden" name="isNearBy" value=""/>
+                                    <input type="hidden" name="isNearBy" value="是"/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -225,7 +225,7 @@
                                     <span class="pseudo-radio" data-value="长期约会" data-select="0">长期约会</span>
                                     <span class="pseudo-radio" data-value="短期约会" data-select="0">短期约会</span>
                                     <span class="pseudo-radio" data-value="待定" data-select="0">待定</span>
-                                    <input type="hidden" name="relationship" value=""/>
+                                    <input type="hidden" name="relationship" value="新朋友"/>
                                 </div>
                             </div>
                         </form>
@@ -255,13 +255,13 @@
                                     <span class="pseudo-radio active" data-value="直" data-select="0">直</span>
                                     <span class="pseudo-radio" data-value="弯" data-select="0">弯</span>
                                     <span class="pseudo-radio" data-value="双" data-select="0">双</span>
-                                    <input type="hidden" name="orientation" value=""/>
+                                    <input type="hidden" name="orientation" value="直"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="status">情感状态</label>
                                 <select name="status">
-                                    <option value="单身 active">单身</option>
+                                    <option value="单身">单身</option>
                                     <option value="和别人交往">在和别人交往</option>
                                     <option value="已婚">已婚</option>
                                     <option value="在开放式关系中">在开放式关系中</option>
@@ -292,7 +292,7 @@
                                     <span class="pseudo-radio active" data-value="否" data-select="0">否</span>
                                     <span class="pseudo-radio" data-value="有时" data-select="0">有时</span>
                                     <span class="pseudo-radio" data-value="是" data-select="0">是</span>
-                                    <input type="hidden" name="smoking" value=""/>
+                                    <input type="hidden" name="smoking" value="否"/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -301,15 +301,15 @@
                                     <span class="pseudo-radio active" data-value="否" data-select="0">否</span>
                                     <span class="pseudo-radio" data-value="社交场合" data-select="0">社交场合</span>
                                     <span class="pseudo-radio" data-value="是" data-select="0">是</span>
-                                    <input type="hidden" name="drinking" value=""/>
+                                    <input type="hidden" name="drinking" value="否"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="religion">宗教信仰</label>
                                 <div>
-                                    <span class="pseudo-radio active" data-value="有" data-select="0">有</span>
+                                    <span class="pseudo-radio active" data-value="否" data-select="0">有</span>
                                     <span class="pseudo-radio" data-value="无" data-select="0">无</span>
-                                    <input type="hidden" name="religion" value=""/>
+                                    <input type="hidden" name="religion" value="否"/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -318,7 +318,7 @@
                                     <span class="pseudo-radio active" data-value="本科" data-select="0">本科</span>
                                     <span class="pseudo-radio" data-value="研究生" data-select="0">研究生</span>
                                     <span class="pseudo-radio" data-value="高中" data-select="0">高中</span>
-                                    <input type="hidden" name="education" value=""/>
+                                    <input type="hidden" name="education" value="本科"/>
                                 </div>
                             </div>
                             <div class="form-group">
