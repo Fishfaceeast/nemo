@@ -26,7 +26,7 @@
         <!-- Current Looking For -->
         <div class="info-wrapper target-info-wrapper">
             <div class="target-info">
-                <h4>希望对方</h4>
+                <h5>希望对方</h5>
                 <div class="info-content">
                     @if (count($target) > 0)
                         @foreach ($target as $item)
@@ -58,8 +58,8 @@
                             <p>{{ $refer->why }}</p>
                             <fieldset class="form-group">
                                 <textarea class="form-control" id="why" rows="3"></textarea>
-                                <button type="button" class="btn btn-primary refer-modify" name="refer">保存设置</button>
-                                <button type="button" class="btn btn-secondary refer-cancel" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary btn-sm refer-modify" name="refer">保存设置</button>
+                                <button type="button" class="btn btn-secondary btn-sm refer-cancel" data-dismiss="modal">关闭</button>
                             </fieldset>
                         </div>
                         <div class="refer-info">
@@ -69,8 +69,8 @@
                             <p>{{ $refer->description }}</p>
                             <fieldset class="form-group">
                                 <textarea class="form-control" id="description" rows="3"></textarea>
-                                <button type="button" class="btn btn-primary refer-modify" name="refer">保存设置</button>
-                                <button type="button" class="btn btn-secondary refer-cancel" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary btn-sm refer-modify" name="refer">保存设置</button>
+                                <button type="button" class="btn btn-secondary btn-sm refer-cancel" data-dismiss="modal">关闭</button>
                             </fieldset>
                         </div>
                         <div class="refer-info">
@@ -80,8 +80,8 @@
                             <p>{{ $refer->story }}</p>
                             <fieldset class="form-group">
                                 <textarea class="form-control" id="story" rows="3"></textarea>
-                                <button type="button" class="btn btn-primary refer-modify" name="refer">保存设置</button>
-                                <button type="button" class="btn btn-secondary refer-cancel" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary btn-sm refer-modify" name="refer">保存设置</button>
+                                <button type="button" class="btn btn-secondary btn-sm refer-cancel" data-dismiss="modal">关闭</button>
                             </fieldset>
                         </div>
                     @endforeach
@@ -99,8 +99,8 @@
                             <p>{{ $item['value'] or '——' }}</p>
                             <fieldset class="form-group">
                                 <textarea class="form-control" id="{{ $item['name'] }}" rows="3"></textarea>
-                                <button type="button" class="btn btn-primary about-modify" name="about">保存设置</button>
-                                <button type="button" class="btn btn-secondary about-cancel" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary btn-sm about-modify" name="about">保存设置</button>
+                                <button type="button" class="btn btn-secondary btn-sm about-cancel" data-dismiss="modal">关闭</button>
                             </fieldset>
                         </div>
                     @endforeach
@@ -179,9 +179,9 @@
                                 这些关键词决定了我们为您展示的人
                             </div>
                             <div class="form-group">
-                                <label for="target_gender">想找</label>
+                                <label for="target_gender">性别</label>
                                 <div>
-                                    <span class="pseudo-radio" data-value="男" data-select="0">男</span>
+                                    <span class="pseudo-radio active" data-value="男" data-select="0">男</span>
                                     <span class="pseudo-radio" data-value="女" data-select="0">女</span>
                                     <input type="hidden" name="target_gender" value=""/>
                                 </div>
@@ -203,17 +203,17 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="isSingle">一定要单身么</label>
+                                <label for="isSingle">必须单身</label>
                                 <div>
-                                    <span class="pseudo-radio" data-value="是" data-select="0">是</span>
+                                    <span class="pseudo-radio active" data-value="是" data-select="0">是</span>
                                     <span class="pseudo-radio" data-value="否" data-select="0">否</span>
                                     <input type="hidden" name="isSingle" value=""/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="isNearBy">一定要同城么</label>
+                                <label for="isNearBy">必须同城</label>
                                 <div>
-                                    <span class="pseudo-radio" data-value="是" data-select="0">是</span>
+                                    <span class="pseudo-radio active" data-value="是" data-select="0">是</span>
                                     <span class="pseudo-radio" data-value="否" data-select="0">否</span>
                                     <input type="hidden" name="isNearBy" value=""/>
                                 </div>
@@ -221,7 +221,7 @@
                             <div class="form-group">
                                 <label>想建立</label>
                                 <div class="pseudo-radio-container">
-                                    <span class="pseudo-radio" data-value="新朋友" data-select="0">新朋友</span>
+                                    <span class="pseudo-radio active" data-value="新朋友" data-select="0">新朋友</span>
                                     <span class="pseudo-radio" data-value="长期约会" data-select="0">长期约会</span>
                                     <span class="pseudo-radio" data-value="短期约会" data-select="0">短期约会</span>
                                     <span class="pseudo-radio" data-value="待定" data-select="0">待定</span>
@@ -252,7 +252,7 @@
                             <div class="form-group">
                                 <label for="orientation">取向</label>
                                 <div>
-                                    <span class="pseudo-radio" data-value="直" data-select="0">直</span>
+                                    <span class="pseudo-radio active" data-value="直" data-select="0">直</span>
                                     <span class="pseudo-radio" data-value="弯" data-select="0">弯</span>
                                     <span class="pseudo-radio" data-value="双" data-select="0">双</span>
                                     <input type="hidden" name="orientation" value=""/>
@@ -261,7 +261,7 @@
                             <div class="form-group">
                                 <label for="status">情感状态</label>
                                 <select name="status">
-                                    <option value="单身">单身</option>
+                                    <option value="单身 active">单身</option>
                                     <option value="和别人交往">在和别人交往</option>
                                     <option value="已婚">已婚</option>
                                     <option value="在开放式关系中">在开放式关系中</option>
@@ -270,13 +270,13 @@
                             <div class="form-group">
                                 <label for="height">身高</label>
                                 <div>
-                                    <input type="text" name="height" data-required="1" data-must="" data-pattern="number"/>
+                                    <input class="height-v" type="text" name="height" data-required="1" data-must="" data-pattern="number"/>
                                     <span class="error-alert">请输入数字</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="weight">体重</label>
-                                <select name="weight">
+                                <select class="select-weight" name="weight">
                                     <option value="暂时不想说">暂时不想说</option>
                                     <option value="瘦">瘦</option>
                                     <option value="瘦高">瘦高</option>
@@ -289,7 +289,7 @@
                             <div class="form-group">
                                 <label for="smoking">吸烟</label>
                                 <div>
-                                    <span class="pseudo-radio" data-value="否" data-select="0">否</span>
+                                    <span class="pseudo-radio active" data-value="否" data-select="0">否</span>
                                     <span class="pseudo-radio" data-value="有时" data-select="0">有时</span>
                                     <span class="pseudo-radio" data-value="是" data-select="0">是</span>
                                     <input type="hidden" name="smoking" value=""/>
@@ -298,7 +298,7 @@
                             <div class="form-group">
                                 <label for="drinking">饮酒</label>
                                 <div>
-                                    <span class="pseudo-radio" data-value="否" data-select="0">否</span>
+                                    <span class="pseudo-radio active" data-value="否" data-select="0">否</span>
                                     <span class="pseudo-radio" data-value="社交场合" data-select="0">社交场合</span>
                                     <span class="pseudo-radio" data-value="是" data-select="0">是</span>
                                     <input type="hidden" name="drinking" value=""/>
@@ -307,7 +307,7 @@
                             <div class="form-group">
                                 <label for="religion">宗教信仰</label>
                                 <div>
-                                    <span class="pseudo-radio" data-value="有" data-select="0">有</span>
+                                    <span class="pseudo-radio active" data-value="有" data-select="0">有</span>
                                     <span class="pseudo-radio" data-value="无" data-select="0">无</span>
                                     <input type="hidden" name="religion" value=""/>
                                 </div>
@@ -315,9 +315,9 @@
                             <div class="form-group">
                                 <label for="education">教育</label>
                                 <div>
-                                    <span class="pseudo-radio" data-value="高中" data-select="0">高中</span>
-                                    <span class="pseudo-radio" data-value="本科" data-select="0">本科</span>
+                                    <span class="pseudo-radio active" data-value="本科" data-select="0">本科</span>
                                     <span class="pseudo-radio" data-value="研究生" data-select="0">研究生</span>
+                                    <span class="pseudo-radio" data-value="高中" data-select="0">高中</span>
                                     <input type="hidden" name="education" value=""/>
                                 </div>
                             </div>
