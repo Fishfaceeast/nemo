@@ -50,36 +50,15 @@
             <!-- Refers -->
             @if (count($refers) > 0)
                 <div class="tab-pane active info-wrapper refer-info-wrapper" id="refer" role="tabpanel">
-                    @foreach ($refers as $refer)
+                    @foreach ($refers as $item)
                         <div class="refer-info">
-                            <h5>推荐原因:
+                            <h5>
+                                {{ $item['cname'] }}:
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                             </h5>
-                            <p>{{ $refer->why }}</p>
+                            <p>{{ $item['value'] or '——' }}</p>
                             <fieldset class="form-group">
-                                <textarea class="form-control" id="why" rows="3"></textarea>
-                                <button type="button" class="btn btn-primary btn-sm refer-modify" name="refer">保存设置</button>
-                                <button type="button" class="btn btn-secondary btn-sm refer-cancel" data-dismiss="modal">关闭</button>
-                            </fieldset>
-                        </div>
-                        <div class="refer-info">
-                            <h5>描述:
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                            </h5>
-                            <p>{{ $refer->description }}</p>
-                            <fieldset class="form-group">
-                                <textarea class="form-control" id="description" rows="3"></textarea>
-                                <button type="button" class="btn btn-primary btn-sm refer-modify" name="refer">保存设置</button>
-                                <button type="button" class="btn btn-secondary btn-sm refer-cancel" data-dismiss="modal">关闭</button>
-                            </fieldset>
-                        </div>
-                        <div class="refer-info">
-                            <h5>你们的故事:
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                            </h5>
-                            <p>{{ $refer->story }}</p>
-                            <fieldset class="form-group">
-                                <textarea class="form-control" id="story" rows="3"></textarea>
+                                <textarea class="form-control" id="{{ $item['name'] }}" rows="3"></textarea>
                                 <button type="button" class="btn btn-primary btn-sm refer-modify" name="refer">保存设置</button>
                                 <button type="button" class="btn btn-secondary btn-sm refer-cancel" data-dismiss="modal">关闭</button>
                             </fieldset>
