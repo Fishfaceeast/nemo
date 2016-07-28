@@ -164,3 +164,12 @@ i.fa-pencil {
 		border-top-left-radius: 0;
 	}
 }
+
+/*user page special*/
+.user-main-container {
+	.info-wrapper.target-info-wrapper, .info-wrapper.detail-info-wrapper {
+		.info-content {
+			cursor: auto;
+		}
+	}
+}
