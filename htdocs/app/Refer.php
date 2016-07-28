@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Refer extends Model
@@ -13,6 +14,12 @@ class Refer extends Model
 	 */
 	protected $fillable = [
 		'user_id', 'why', 'description', 'story'
+	];
+
+	public static $itemText = [
+		'why'           => '推荐原因',
+		'description'   => '描述',
+		'story'         => '你们的故事',
 	];
 	/**
 	 * The attributes excluded from the model's JSON form.

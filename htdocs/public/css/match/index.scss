@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import 'groove-slider';
 
 .nav-tabs .nav-item + .nav-item {
@@ -28,13 +29,21 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		z-index: 10;
+		z-index: 100;
 		span.close-cover {
 			color: #fff;
 			display: block;
 			float: right;
 			font-size: 22px;
 			font-weight: bold;
+		}
+	}
+	i.pop-switch {
+		display: inline-block;
+		border-bottom: 1px dashed #fff;
+		line-height: 1.5;
+		&:hover {
+			border-bottom: 1px solid #fff;
 		}
 	}
 	strong {
@@ -71,9 +80,16 @@
 		line-height: 40px;
 		font-size: 16px;
 		.choice-block {
+			background-color: #a0d5c5;
+			border-radius: 3px;
 			cursor: pointer;
+			display: inline-block;
+			width: 40px;
+			height: 30px;
+			line-height: 30px;
 			&.active {
-				color: #f46;
+				color: #fff;
+				background-color: #1bbc9b;
 			}
 		}
 	}
@@ -86,43 +102,67 @@ i.fa-sliders {
 	font-size: 22px;
 	color: #fff;
 	cursor: pointer;
-}
-span.arrow-box {
-	min-width: 200px;
-	left: 0;
-	top: 30px;
+	position: relative;
 	&:hover {
-		text-decoration: underline;
+		&::after {
+			content: "高级搜索";
+			height: 26px;
+			line-height: 26px;
+			width: 72px;
+			background-color: black;
+			color: #fff;
+			position: absolute;
+			right:26px;
+			font-size: 14px;
+			text-align: center;
+		}
 	}
 }
 .arrow-box {
+	width: 120px;
+	left: 6px;
+	top: 34px;
 	position: absolute;
-	background: #88b7d5;
-	border: 2px solid #c2e1f5;
+	background: #f3f5f9;
+	border: 2px solid #f3f5f9;
 	border-radius: 5px;
-}
-.arrow-box:after, .arrow-box:before {
-	bottom: 100%;
-	left: 50%;
-	border: solid transparent;
-	content: " ";
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
-}
-
-.arrow-box:after {
-	border-color: rgba(136, 183, 213, 0);
-	border-bottom-color: #88b7d5;
-	border-width: 10px;
-	margin-left: -10px;
-}
-.arrow-box:before {
-	border-color: rgba(194, 225, 245, 0);
-	border-bottom-color: #c2e1f5;
-	border-width: 13px;
-	margin-left: -13px;
+	text-align: center;
+	z-index: 10;
+	label {
+		margin-bottom: 0;
+	}
+	input {
+		width: 50px;
+		height: 30px;
+	}
+	&.arrow-box-range {
+		width: 140px;
+	}
+	&.arrow-box-target-gender {
+		left: -20px;
+	}
+	&:after, &:before {
+		bottom: 100%;
+		left: 50%;
+		border: solid transparent;
+		content: " ";
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+	}
+	&:after {
+		border-color: rgba(136, 183, 213, 0);
+		border-bottom-color: #f3f5f9;
+		border-width: 10px;
+		margin-left: -10px;
+	}
+	&:before {
+		border-color: rgba(194, 225, 245, 0);
+		border-bottom-color: #f3f5f9;
+		border-width: 13px;
+		margin-left: -13px;
+	}
 }
 // advanced search
 .advanced-search {

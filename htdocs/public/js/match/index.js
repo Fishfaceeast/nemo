@@ -19,11 +19,11 @@ const sliderDataMap = {
 
 var baseTemplate = data => `
 	<strong>
+		搜一下：
 		<i class="pop-switch">
-			搜一下：${data["gender"]}，
+			${data["gender"]}，
 		</i>
 		<span class="arrow-box pop-over">
-			<h4>性别</h4>
 			<div data-key="gender">
 				<span class="choice-block base-choice ${isChoiceActive('gender', '男')}" data-value="男">男</span>
 				<span class="choice-block base-choice ${isChoiceActive('gender', '女')}" data-value="女">女</span>
@@ -31,11 +31,12 @@ var baseTemplate = data => `
 		</span>
 	</strong>
 	<strong>
+		年龄
 		<i class="pop-switch">
-			年龄${data["latestBirth"]}-${data["earliestBirth"]}，
+			${data["latestBirth"]}-${data["earliestBirth"]}
 		</i>
-		<span class="arrow-box pop-over">
-			<h4>年龄</h4>
+		，
+		<span class="arrow-box pop-over arrow-box-range">
 			<label data-key="latestBirth">
 				<input type="text" value="${data["latestBirth"]}"/>
 			</label>
@@ -46,11 +47,12 @@ var baseTemplate = data => `
 		</span>
 	</strong>
 	<strong>
+		对
 		<i class="pop-switch">
-			对${data["target_gender"]}性感兴趣，
+			${data["target_gender"]}性
 		</i>
-		<span class="arrow-box pop-over">
-			<h4>性向</h4>
+		感兴趣，
+		<span class="arrow-box pop-over arrow-box-target-gender">
 			<div data-key="target_gender">
 				<span class="choice-block base-choice ${isChoiceActive('target_gender', '男')}" data-value="男">男</span>
 				<span class="choice-block base-choice ${isChoiceActive('target_gender', '女')}" data-value="女">女</span>
@@ -58,11 +60,12 @@ var baseTemplate = data => `
 		</span>
 	</strong>
 	<strong>
+		城市
 		<i class="pop-switch">
-			坐标${data["city"]}。
+			${data["city"]}
 		</i>
+		。
 		<span class="arrow-box pop-over">
-			<h4>位于</h4>
 			<div data-key="city">
 				<input id="city" type="text" value="${data['city']}"/>
 			</div>

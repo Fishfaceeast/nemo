@@ -20,8 +20,15 @@ class ReferRepository {
 	 */
 	public function forUser(User $user)
 	{
-		return Refer::where('user_id', $user->id)
+		$referCollection = Refer::where('user_id', $user->id)
 			->orderBy('created_at', 'asc')
-			->get();
+			->first();
+		$ret = [];
+		foreach(Refer::$itemText as $key => $text) {
+			$ret[$key]['name'] = $key;
+			$ret[$key]['cname'] = $text;
+			$ret[$key]['value'] = isset($referCollection->$key) ? $referCollection->$key : '';
+		}
+		return $ret;
 	}
 }
