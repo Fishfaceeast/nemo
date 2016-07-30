@@ -184,13 +184,24 @@ class MatchController extends Controller {
 			}
 		}
 		$registerHits = $this->inQuery('users', 'id', $ret['id']);
+		$referHits = $this->inQuery('refers', 'user_id', $ret['id']);
 		$names = [];
+		$refers = [];
 		foreach($registerHits as $hit) {
-			$id = $hit->id;
+			$id = $hit->id; // uid
 			$names[$id] = $hit->name;
+		}
+		foreach($referHits as $hit) {
+			$id = $hit->user_id; // uid
+			$refers[$id] = $hit;
 		}
 		foreach($ret['data'] as $id => $attr) {
 			$ret['data'][$id]->name = $names[$id];
+			if(isset ($refers[$id])) {
+				$ret['data'][$id]->why = $refers[$id]->why;
+				$ret['data'][$id]->description = $refers[$id]->description;
+				$ret['data'][$id]->story = $refers[$id]->story;
+			}
 		}
 		$ret['total'] = count($ret['id']);
 		return $ret;

@@ -163,7 +163,35 @@ const makeCard = (items) => {
 	$.each(items, function(id, obj) {
 		let age = y - parseInt(obj.birth_year)
 		let url = '/u/' + obj.user_id
-		str += `<a class="card" href="${url}" target="_blank"><img src="/img/avatar.png"><h4 class="name">${obj.name}</h4><p><span>${age}</span><span>·</span><span>${obj.city}</span></p></a>`
+		let why = obj.why ? obj.why : '还没写推荐原因'
+		let description =  obj.description ? obj.description : '还没写描述'
+		let story = obj.story ? obj.story : ''
+
+		str += `
+			<a class="card flip-container" href="${url}" target="_blank">
+				<div class="flipper">
+					<div class="front">
+						<img src="/img/avatar.png">
+						<h4 class="name">${obj.name}</h4>
+						<p>
+							<span>${age}</span>
+							<span>·</span>
+							<span>${obj.city}</span>
+						</p>
+					</div>
+					<div class="back">
+						<h4>
+							朋友说
+						</h4>
+						<div class="content">
+							<p>${why}</p>
+							<p>${description}</p>
+							<p>${story}</p>
+						</div>
+					</div>
+				</div>
+			</a>
+			`
 	})
 	$board.html(str)
 }
