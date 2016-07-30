@@ -21,6 +21,8 @@ const baseTemplate = (data) => {
 	let gender = data["gender"] || '——'
 	let target_gender = data["target_gender"] ? data["target_gender"] + '性' : '——'
 	let city = data["city"] || '——'
+	let earliestBirth = data["earliestBirth"] || '不限'
+	let latestBirth = data["latestBirth"] || '不限'
 	return `
 		<strong>
 			搜一下：
@@ -37,7 +39,7 @@ const baseTemplate = (data) => {
 		<strong>
 			年龄
 			<i class="pop-switch">
-				${data["latestBirth"]}-${data["earliestBirth"]}
+				${latestBirth}-${earliestBirth}
 			</i>
 			，
 			<span class="arrow-box pop-over arrow-box-range">
@@ -71,7 +73,7 @@ const baseTemplate = (data) => {
 			。
 			<span class="arrow-box pop-over">
 				<div data-key="city">
-					<input id="city" type="text" value="${city}"/>
+					<input id="city" type="text" value="${data["city"]}"/>
 				</div>
 			</span>
 		</strong>
@@ -139,7 +141,8 @@ $baseForm.on('click', '.base-choice', function(e) {
 		$target.siblings().removeClass('active')
 	}
 	$target.toggleClass('active')
-
+	renderSentence(baseData)
+	sendQuery(baseData)
 })
 $baseForm.on('change', 'input', function() {
 	let key = $(this).parent().data('key')
@@ -150,11 +153,11 @@ $baseForm.on('change', 'input', function() {
 	} else {
 		delete baseData[key]
 	}
+	renderSentence(baseData)
+	sendQuery(baseData)
 })
 $('body').on('click', function(e) {
 	if($(this).hasClass('pop-open')) {
-		renderSentence(baseData)
-		sendQuery(baseData)
 		$('.pop-switch').parent().removeClass('open')
 		$(this).removeClass('pop-open')
 	}
