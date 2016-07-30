@@ -163,7 +163,26 @@ const makeCard = (items) => {
 	$.each(items, function(id, obj) {
 		let age = y - parseInt(obj.birth_year)
 		let url = '/u/' + obj.user_id
-		str += `<a class="card" href="${url}" target="_blank"><img src="/img/avatar.png"><h4 class="name">${obj.name}</h4><p><span>${age}</span><span>·</span><span>${obj.city}</span></p></a>`
+		str += `
+			<a class="card flip-container" href="${url}" target="_blank">
+				<div class="flipper">
+					<div class="front">
+						<img src="/img/avatar.png">
+						<h4 class="name">${obj.name}</h4>
+						<p>
+							<span>${age}</span>
+							<span>·</span>
+							<span>${obj.city}</span>
+						</p>
+					</div>
+					<div class="back">
+						<p>
+							wait to see
+						</p>
+					</div>
+				</div>
+			</a>
+			`
 	})
 	$board.html(str)
 }

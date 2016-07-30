@@ -1,0 +1,35 @@
+// flipper
+@mixin flipper($width, $height) {
+	perspective: 1000px;
+	width: $width;
+	height: $height;
+	&:hover .flipper, &.hover .flipper {
+		transform: rotateY(180deg);
+	}
+	.flipper {
+		transition: 0.6s;
+		transform-style: preserve-3d;
+		position: relative;
+	}
+	.front, .back {
+		backface-visibility: hidden;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: $width;
+		height: $height;
+	}
+	.front {
+		z-index: 2;
+		transform: rotateY(0deg);
+	}
+	.back {
+		transform: rotateY(180deg);
+	}
+}
+
+
+
+
+
+

@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import 'groove-slider';
+@import 'flipper';
 
 .nav-tabs .nav-item + .nav-item {
 	margin-left: 0;
@@ -250,20 +251,36 @@ i.fa-sliders {
 }
 // card
 a.card {
-	border: 1px solid #ccc;
+	@include flipper(280px,360px);
 	box-sizing: border-box;
 	margin: 20px;
-	width: 280px;
-	height: 360px;
 	float: left;
-	border-radius: 10px;
 	text-align: center;
 	display: block;
 	text-decoration: none;
 	color: inherit;
+	background-color: transparent;
+	border: none;
 	img {
 		width: 100%;
 		border-top-left-radius: 10px;
 		border-top-right-radius: 10px;
+	}
+	.front {
+		h4 {
+			height: 40px;
+			line-height: 40px;
+			margin: 0;
+		}
+		p {
+			height: 30px;
+			line-height: 30px;
+			margin: 0;
+		}
+	}
+	.front, .back {
+		background-color: #fff;
+		border: 1px solid #ccc;
+		border-radius: 10px;
 	}
 }
