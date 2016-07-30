@@ -225,6 +225,29 @@ i.fa-sliders {
 				padding-left: 10px;
 			}
 		}
+		select {
+			height: 30px;
+			line-height: 30px;
+			color: #373a3c;
+		}
+		.heightMin-container {
+			text-align: right;
+			padding-right: 20px;
+			p.feature-title {
+				margin-right: -28px;
+			}
+		}
+		.heightMax-container {
+			text-align: left;
+			.feature-title {
+				text-indent: -9999px;
+			}
+		}
+		#look {
+			button {
+				margin-top: 39px;
+			}
+		}
 	}
 	.nav-tabs {
 		.nav-link {
