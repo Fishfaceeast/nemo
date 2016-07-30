@@ -17,62 +17,68 @@ const sliderDataMap = {
 	}
 }
 
-var baseTemplate = data => `
-	<strong>
-		搜一下：
-		<i class="pop-switch">
-			${data["gender"]}，
-		</i>
-		<span class="arrow-box pop-over">
-			<div data-key="gender">
-				<span class="choice-block base-choice ${isChoiceActive('gender', '男')}" data-value="男">男</span>
-				<span class="choice-block base-choice ${isChoiceActive('gender', '女')}" data-value="女">女</span>
-			</div>
-		</span>
-	</strong>
-	<strong>
-		年龄
-		<i class="pop-switch">
-			${data["latestBirth"]}-${data["earliestBirth"]}
-		</i>
-		，
-		<span class="arrow-box pop-over arrow-box-range">
-			<label data-key="latestBirth">
-				<input type="text" value="${data["latestBirth"]}"/>
-			</label>
-			<span> - </span>
-			<label data-key="earliestBirth">
-				<input type="text" value="${data["earliestBirth"]}"/>
-			</label>
-		</span>
-	</strong>
-	<strong>
-		对
-		<i class="pop-switch">
-			${data["target_gender"]}性
-		</i>
-		感兴趣，
-		<span class="arrow-box pop-over arrow-box-target-gender">
-			<div data-key="target_gender">
-				<span class="choice-block base-choice ${isChoiceActive('target_gender', '男')}" data-value="男">男</span>
-				<span class="choice-block base-choice ${isChoiceActive('target_gender', '女')}" data-value="女">女</span>
-			</div>
-		</span>
-	</strong>
-	<strong>
-		城市
-		<i class="pop-switch">
-			${data["city"]}
-		</i>
-		。
-		<span class="arrow-box pop-over">
-			<div data-key="city">
-				<input id="city" type="text" value="${data['city']}"/>
-			</div>
-		</span>
-	</strong>
+const baseTemplate = (data) => {
+	let gender = data["gender"] || '——'
+	let target_gender = data["target_gender"] ? data["target_gender"] + '性' : '——'
+	let city = data["city"] || '——'
+	let earliestBirth = data["earliestBirth"] || '不限'
+	let latestBirth = data["latestBirth"] || '不限'
+	return `
+		<strong>
+			搜一下：
+			<i class="pop-switch">
+				${gender}，
+			</i>
+			<span class="arrow-box pop-over">
+				<div data-key="gender">
+					<span class="choice-block base-choice ${isChoiceActive('gender', '男')}" data-value="男">男</span>
+					<span class="choice-block base-choice ${isChoiceActive('gender', '女')}" data-value="女">女</span>
+				</div>
+			</span>
+		</strong>
+		<strong>
+			年龄
+			<i class="pop-switch">
+				${latestBirth}-${earliestBirth}
+			</i>
+			，
+			<span class="arrow-box pop-over arrow-box-range">
+				<label data-key="latestBirth">
+					<input type="text" value="${data["latestBirth"]}"/>
+				</label>
+				<span> - </span>
+				<label data-key="earliestBirth">
+					<input type="text" value="${data["earliestBirth"]}"/>
+				</label>
+			</span>
+		</strong>
+		<strong>
+			对
+			<i class="pop-switch">
+				${target_gender}
+			</i>
+			感兴趣，
+			<span class="arrow-box pop-over arrow-box-target-gender">
+				<div data-key="target_gender">
+					<span class="choice-block base-choice ${isChoiceActive('target_gender', '男')}" data-value="男">男</span>
+					<span class="choice-block base-choice ${isChoiceActive('target_gender', '女')}" data-value="女">女</span>
+				</div>
+			</span>
+		</strong>
+		<strong>
+			城市
+			<i class="pop-switch">
+				${city}
+			</i>
+			。
+			<span class="arrow-box pop-over">
+				<div data-key="city">
+					<input id="city" type="text" value="${data["city"]}"/>
+				</div>
+			</span>
+		</strong>
 	`
-
+}
 function isChoiceActive(key, value) {
 	return value == baseData[key] ? 'active' : ''
 }
@@ -102,7 +108,7 @@ var advKey = []
 
 var vehicle = $({})
 
-function renderSentence(data) {
+const renderSentence = (data) => {
 	$baseForm.html(baseTemplate(data))
 }
 
@@ -135,7 +141,8 @@ $baseForm.on('click', '.base-choice', function(e) {
 		$target.siblings().removeClass('active')
 	}
 	$target.toggleClass('active')
-
+	renderSentence(baseData)
+	sendQuery(baseData)
 })
 $baseForm.on('change', 'input', function() {
 	let key = $(this).parent().data('key')
@@ -146,11 +153,11 @@ $baseForm.on('change', 'input', function() {
 	} else {
 		delete baseData[key]
 	}
+	renderSentence(baseData)
+	sendQuery(baseData)
 })
 $('body').on('click', function(e) {
 	if($(this).hasClass('pop-open')) {
-		renderSentence(baseData)
-		sendQuery(baseData)
 		$('.pop-switch').parent().removeClass('open')
 		$(this).removeClass('pop-open')
 	}
