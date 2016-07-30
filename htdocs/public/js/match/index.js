@@ -162,7 +162,8 @@ const makeCard = (items) => {
 	let y = d.getFullYear()
 	$.each(items, function(id, obj) {
 		let age = y - parseInt(obj.birth_year)
-		str += `<div class="card"><img src="/img/avatar.png"><h4 class="name">${obj.name}</h4><p><span>${age}</span><span>·</span><span>${obj.city}</span></p></div>`
+		let url = '/u/' + obj.user_id
+		str += `<a class="card" href="${url}" target="_blank"><img src="/img/avatar.png"><h4 class="name">${obj.name}</h4><p><span>${age}</span><span>·</span><span>${obj.city}</span></p></a>`
 	})
 	$board.html(str)
 }
