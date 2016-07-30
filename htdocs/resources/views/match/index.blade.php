@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 <div class="tab-pane clearfix" id="look" role="tabpanel">
-                    <div data-key="height" data-type="select">
+                    <div class="heightMin-container" data-key="heightMin" data-type="select">
                         <p class="feature-title">身高</p>
                         <select name="heightMin">
                             <option value="150">150</option>
@@ -78,6 +78,9 @@
                             <option value="175">175</option>
                             <option value="180">180</option>
                         </select>
+                    </div>
+                    <div class="heightMax-container" data-key="heightMax" data-type="select">
+                        <p class="feature-title">身高</p>
                         <select name="heightMax">
                             <option value="150">150</option>
                             <option value="155">155</option>
