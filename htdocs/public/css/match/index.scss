@@ -249,7 +249,7 @@ i.fa-sliders {
 	}
 }
 // card
-.card {
+a.card {
 	border: 1px solid #ccc;
 	box-sizing: border-box;
 	margin: 20px;
@@ -258,6 +258,9 @@ i.fa-sliders {
 	float: left;
 	border-radius: 10px;
 	text-align: center;
+	display: block;
+	text-decoration: none;
+	color: inherit;
 	img {
 		width: 100%;
 		border-top-left-radius: 10px;
