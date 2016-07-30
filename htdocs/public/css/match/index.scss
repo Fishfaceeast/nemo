@@ -267,6 +267,8 @@ a.card {
 		border-top-right-radius: 10px;
 	}
 	.front {
+		border-radius: 10px;
+		background-color: #fff;
 		h4 {
 			height: 40px;
 			line-height: 40px;
@@ -278,9 +280,34 @@ a.card {
 			margin: 0;
 		}
 	}
+	.back {
+		h4 {
+			height: 40px;
+			line-height: 40px;
+			margin: 0;
+			background-color: #ffc0c1;
+			color: #fff;
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+		}
+		.content {
+			background-color: #fff;
+			text-align: left;
+			color: #666;
+			height: 320px;
+			border-bottom-left-radius: 10px;
+			border-bottom-right-radius: 10px;
+		}
+		p {
+			padding: 5px 10px;
+			margin: 0 0 10px 0;
+			min-height: 40px;
+			max-height: 90px;
+			overflow: hidden;
+			box-sizing: content-box;
+		}
+	}
 	.front, .back {
-		background-color: #fff;
-		border: 1px solid #ccc;
 		border-radius: 10px;
 	}
 }
