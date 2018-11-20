@@ -1,2 +1,2 @@
-# nemo
-# HELLO NEMO
+# 基于Laravel, Mysql, JQuery, Bootstrap搭建的一个相亲网站，与一般网站不同的是，不是自己去检索，而是朋友帮某人匹配。
+# 由搜索页、用户详情页、个人管理页等组成。
